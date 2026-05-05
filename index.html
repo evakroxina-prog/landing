@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- YouTube embed (ошибка 153): плееру нужен нормальный Referer; same-origin / file:// ломают встраивание -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Создание лендинг-пейдж — M:E Agency · Прага</title>
+  <title>Создание лендинг-пейдж — Market Expert Agency · Прага</title>
   <meta name="description" content="Создаём лендинги под ключ: анализ, текст, дизайн, вёрстка. Пакеты от 200 €. Прага." />
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="assets/logo.svg" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -52,7 +52,7 @@
   <nav class="text-cream fixed top-0 left-0 right-0 z-50" id="mainNav">
     <div class="max-w-7xl mx-auto px-6 lg:px-10 h-[68px] flex items-center justify-between">
       <a href="#" class="flex items-center gap-3">
-        <img src="assets/logo.png" alt="M:E agency" class="w-10 h-10 object-contain drop-shadow-lg" />
+        <img src="logo.png" alt="M:E agency" class="w-10 h-10 object-contain drop-shadow-lg" width="40" height="40" decoding="async" onerror="this.onerror=null;this.src='logo.svg'" />
         <div class="font-display font-semibold text-[20px] tracking-tight leading-none">M:E <span class="text-gold2 font-normal italic">agency</span></div>
       </a>
 
@@ -115,7 +115,7 @@
           <div class="hero-trust">
             <div class="trust-langs">
               <span>🇨🇿</span><span>🇺🇦</span><span>🇬🇧</span><span>🇷🇺</span>
-              <span class="trust-note">общаемся на 4-х языках</span>
+              <span class="trust-note">общаемся и пишем на 4-х языках</span>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-expertise">
@@ -465,7 +465,7 @@
             <div class="deliv-num"><span>03</span></div>
             <div class="deliv-body">
               <div class="text-[10px] uppercase tracking-[0.22em] text-gold mb-2">Этап 3 · 4–6 дней</div>
-              <h3 class="font-display font-bold text-2xl lg:text-3xl text-wine-dk mb-3">UI-дизайн</h3>
+              <h3 class="font-display font-bold text-2xl lg:text-3xl text-wine-dk mb-3">UI-дизайн в Figma</h3>
               <p class="text-[14.5px] text-muted leading-relaxed">Визуальный дизайн, который помогает читать и конвертировать. Mobile-first: сначала телефон, потом десктоп — а не наоборот.</p>
               <div class="deliv-media">
                 <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=700&q=80" alt="UI-дизайн макетов" loading="lazy">
@@ -979,7 +979,7 @@
         </div>
       </div>
 
-      <!-- Formspree: в action подставьте свой endpoint вида https://formspree.io/f/xxxxxx (кабинет → Form → Integration) -->
+      <!-- Formspree: https://formspree.io · уведомления и домен настраиваются в кабинете -->
       <form class="form-box" action="https://formspree.io/f/xpqbdkav" method="POST" onsubmit="handleFormSubmit(event)" data-reveal="fade">
         <input type="hidden" name="_subject" value="Заявка с лендинга MarketExpert">
         <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -993,8 +993,12 @@
             <input type="text" name="name" placeholder="Как к вам обращаться?" required autocomplete="name">
           </div>
           <div class="field">
-            <label>Телефон или Email</label>
-            <input type="text" name="contact" placeholder="+420 … или email@…" required autocomplete="email">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@company.com" required autocomplete="email">
+          </div>
+          <div class="field field-full">
+            <label>Телефон <span class="text-cream/40 font-normal">(необязательно)</span></label>
+            <input type="tel" name="phone" placeholder="+420 …" autocomplete="tel">
           </div>
           <div class="field field-full">
             <label>Какой пакет интересует?</label>
@@ -1019,13 +1023,16 @@
     </div>
   </section>
 
-  <!-- Cookie bar (fixed); см. script.js GA4_MEASUREMENT_ID -->
-  <div id="cookieBanner" class="cookie-banner cookie-banner--closed" role="dialog" aria-label="Файлы cookie" aria-hidden="true">
+  <!-- Cookie bar: тот же ключ localStorage и логика, что на marketexpert.cz (cookie_consent yes/no) -->
+  <div id="cookie-banner" class="cookie-banner cookie-banner--closed" role="dialog" aria-label="Файлы cookie" aria-hidden="true">
     <div class="cookie-banner__inner">
-      <p class="cookie-banner__text">Мы используем cookies и аналитику (GA4), чтобы понимать, как устроен трафик. <strong>Необходимые</strong> cookies нужны для работы сайта; <strong>аналитика</strong> включается только после согласия.</p>
+      <p class="cookie-banner__text">
+        Мы используем файлы cookie для аналитики (Google Analytics). Нажимая «Принять», вы соглашаетесь на их использование.
+        <a href="https://marketexpert.cz/cookie-policy" target="_blank" rel="noopener" class="cookie-banner__link">Политика cookie</a>
+      </p>
       <div class="cookie-banner__actions">
-        <button type="button" class="cookie-banner__btn cookie-banner__btn--primary" data-cookie-accept>Принять все</button>
-        <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie-reject>Только необходимые</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie-reject>Отклонить</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--primary" data-cookie-accept>Принять</button>
       </div>
     </div>
   </div>
@@ -1034,7 +1041,7 @@
   <footer class="bg-wine2 text-cream/70 py-10 px-6 lg:px-14">
     <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-6">
       <div class="flex items-center gap-3">
-        <img src="assets/logo.svg" alt="M:E agency" class="w-10 h-10 object-contain" width="40" height="40" />
+        <img src="logo.png" alt="M:E agency" class="w-10 h-10 object-contain" width="40" height="40" decoding="async" onerror="this.onerror=null;this.src='logo.svg'" />
         <div>
           <div class="font-display font-semibold text-[18px] text-cream">M:E <span class="text-gold2 font-normal italic">agency</span></div>
           <div class="text-[11px] text-cream/40 mt-0.5">© 2026 · Прага, Чехия · Создание лендингов</div>
@@ -1048,6 +1055,9 @@
     </div>
   </footer>
 
+  <script>
+    window.__GA4_MEASUREMENT_ID__ = 'G-SPKHXMCQGM';
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

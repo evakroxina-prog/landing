@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- YouTube embed (ошибка 153): плееру нужен нормальный Referer; same-origin / file:// ломают встраивание -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Создание лендинг-пейдж — Market Expert Agency · Прага</title>
+  <meta name="description" content="Создаём лендинги под ключ: анализ, текст, дизайн, вёрстка. От 690 €. Прага." />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Fraunces"', 'Georgia', 'serif'],
+            sans:    ['"DM Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            cream:     '#faf8f4',
+            cream2:    '#f3efe8',
+            cream3:    '#e8e2da',
+            wine:      '#6b1f3a',
+            'wine-dk': '#1e1218',
+            'wine-md': '#85405f',
+            wine2:     '#140c10',
+            gold:      '#d4920a',
+            gold2:     '#f5a623',
+            goldDim:   '#b0780d',
+            ink:       '#1c1410',
+            muted:     '#6b5d54',
+            success:   '#1f8a50',
+            danger:    '#b4342c',
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="font-sans text-ink bg-cream antialiased overflow-x-hidden">
+
+  <!-- ============ NAV ============ -->
+  <nav class="text-cream fixed top-0 left-0 right-0 z-50" id="mainNav">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 h-[68px] flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="M:E agency" class="w-10 h-10 object-contain drop-shadow-lg" />
+        <div class="font-display font-semibold text-[20px] tracking-tight leading-none">M:E <span class="text-gold2 font-normal italic">agency</span></div>
+      </a>
+
+      <ul class="hidden lg:flex items-center gap-8 text-[12.5px] font-medium tracking-[0.08em] uppercase text-cream/65">
+        <li><a href="#math" class="nav-link">Математика</a></li>
+        <li><a href="#what" class="nav-link">Что получаете</a></li>
+        <li><a href="#showreel" class="nav-link">Примеры</a></li>
+        <li><a href="#process" class="nav-link">Процесс</a></li>
+        <li><a href="#pricing" class="nav-link">Стоимость</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+
+      <a href="#order" class="magnetic bg-gold2 hover:bg-gold text-wine-dk text-[12px] font-bold tracking-[0.1em] uppercase px-6 py-3 rounded-md transition" data-magnetic-strength="0.35">Получить лендинг</a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO — PRAGUE BACKGROUND + EDITORIAL CARD ============ -->
+  <section class="hero-editorial relative">
+    <!-- Background image -->
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=2400&q=85" alt="Прага, панорама Старого города" loading="eager" />
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-14 pt-32 lg:pt-36 pb-20 lg:pb-28 relative z-[2]">
+      <div class="flex lg:justify-end">
+        <div class="w-full max-w-[820px]">
+        <!-- HERO CARD -->
+        <div class="hero-card" data-reveal="fade">
+          <!-- decorative floating spark -->
+          <span class="hero-spark" style="--top:14%;--left:92%;"></span>
+          <span class="hero-spark" style="--top:78%;--left:4%;animation-delay:1.2s;"></span>
+
+          <div class="flex items-center gap-4 mb-7">
+            <span class="h-px bg-gold2 flex-1 max-w-[52px]"></span>
+            <span class="text-[11px] font-bold tracking-[0.26em] uppercase text-gold2">Создание лендинг-пейдж · Прага</span>
+          </div>
+
+          <h1 class="font-display font-normal text-[46px] lg:text-[76px] leading-[1.0] tracking-[-0.02em] text-cream">
+            <span class="block word-reveal"><span>Лендинг,</span></span>
+            <span class="block word-reveal">
+              <span>который&nbsp;</span><span class="italic relative inline-block text-gold2" style="transition-delay: 100ms">продаёт<svg class="absolute left-0 -bottom-1 w-full h-3 pointer-events-none" viewBox="0 0 400 16" preserveAspectRatio="none"><path class="sells-underline" d="M 4 10 Q 80 4, 160 8 T 320 9 T 396 7" stroke="#f5a623" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span><span class="italic" style="transition-delay: 200ms">.</span>
+            </span>
+          </h1>
+
+          <p class="mt-7 text-[16px] text-cream/80 leading-[1.6] max-w-xl">
+            Создаём страницы под ключ: <b class="text-cream">анализ аудитории</b>, <b class="text-cream">текст</b>, <b class="text-cream">дизайн</b> и <b class="text-cream">вёрстка</b>. Срок — от 14 дней. Вы получаете инструмент, который работает в паре с рекламой — а не красивый макет «в стол».
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3 items-center">
+            <a href="#order" class="magnetic pulse-ring group bg-gold2 text-wine-dk px-8 py-4 rounded-md font-bold text-[12.5px] tracking-[0.1em] uppercase hover:bg-gold transition inline-flex items-center justify-center" data-magnetic-strength="0.35">
+              <span>Оставить заявку</span>
+            </a>
+            <a href="#what" class="magnetic inline-flex items-center gap-2 text-[12.5px] font-semibold text-cream/90 border border-cream/25 hover:border-gold2 hover:text-gold2 px-7 py-4 rounded-md transition uppercase tracking-[0.08em]" data-magnetic-strength="0.25">
+              Что входит
+            </a>
+          </div>
+
+          <!-- Trust strip inside card -->
+          <div class="hero-trust">
+            <div class="trust-langs">
+              <span>🇨🇿</span><span>🇺🇦</span><span>🇬🇧</span><span>🇷🇺</span>
+              <span class="trust-note">общаемся и пишем на 4-х языках</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-expertise">
+              <span class="trust-note"><b class="text-cream">10+ лет в интернет-маркетинге</b> — знаем, где воронка «течёт» и как это чинить на уровне лендинга</span>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="hero-scroll-cue hidden lg:flex" aria-hidden="true">
+        <span class="text-[10px] uppercase tracking-[0.3em] text-cream/80">Scroll</span>
+        <span class="scroll-line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEMS — 4 SIGNS ============ -->
+  <section class="problems-sec relative py-20 lg:py-28 px-6 lg:px-14">
+    <div class="max-w-7xl mx-auto relative">
+      <div class="grid lg:grid-cols-[1.1fr_1fr] gap-14 items-end mb-14">
+        <div data-reveal="fade">
+          <div class="inline-flex items-center gap-2 text-gold text-[11px] font-bold tracking-[0.26em] uppercase mb-4">
+            <span class="w-8 h-px bg-gold"></span>
+            Признаки, что лендинг вас подводит
+          </div>
+          <h2 class="font-display font-normal text-4xl lg:text-6xl leading-[1.14] tracking-tight text-wine-dk">
+            Если хоть одно — <em class="italic shimmer-text" data-text="знакомо">знакомо</em>, вы теряете деньги.
+          </h2>
+        </div>
+        <p class="text-[15px] text-muted leading-relaxed max-w-md" data-reveal="fade">
+          Плохой лендинг редко «не работает совсем». Чаще он тихо сжигает рекламный бюджет — пока вы этого не видите. Вот 4 признака, что это ваш случай.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <article class="problem-card" data-reveal="fade">
+          <div class="problem-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg></div>
+          <div class="problem-num">01</div>
+          <h3>Трафик идёт, заявок мало</h3>
+          <p>Посетители приходят, но уходят без действия. Конверсия меньше 2 % — классика «шаблонного» лендинга.</p>
+        </article>
+        <article class="problem-card" data-reveal="fade" style="transition-delay:80ms">
+          <div class="problem-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div class="problem-num">02</div>
+          <h3>Заявки приходят, но «холодные»</h3>
+          <p>Оставляют номер «просто спросить». В воронке продаж — отваливаются на первом же звонке менеджера.</p>
+        </article>
+        <article class="problem-card" data-reveal="fade" style="transition-delay:160ms">
+          <div class="problem-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l10 6-10 6L2 8l10-6z"/><path d="M2 16l10 6 10-6"/></svg></div>
+          <div class="problem-num">03</div>
+          <h3>Лендинг не отличается от конкурентов</h3>
+          <p>Те же заголовки, те же «преимущества». У клиента нет причины выбрать именно вас — он идёт по цене.</p>
+        </article>
+        <article class="problem-card" data-reveal="fade" style="transition-delay:240ms">
+          <div class="problem-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2v6a6 6 0 0 0 12 0V2"/><path d="M6 22v-6a6 6 0 0 1 12 0v6"/><path d="M4 2h16"/><path d="M4 22h16"/></svg></div>
+          <div class="problem-num">04</div>
+          <h3>Не понимаете, что изменить</h3>
+          <p>Аналитика стоит, но непонятно — дело в заголовке, цене, тексте или вообще в трафике. Гадаете вслепую.</p>
+        </article>
+      </div>
+
+      <div class="problems-arrow-hint" data-reveal="fade">
+        <svg width="38" height="70" viewBox="0 0 38 70" fill="none" class="text-gold">
+          <path class="prob-arrow" d="M 19 3 Q 8 35, 19 65 M 12 57 L 19 65 L 26 57" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="problems-arrow-text">
+          А теперь <b>посчитайте</b>, во сколько это <b>обходится</b> в деньгах →
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTERACTIVE MATH CALCULATOR ============ -->
+  <section id="math" class="math-sec relative py-20 lg:py-28 px-6 lg:px-14 overflow-hidden bg-wine text-cream">
+
+    <div class="max-w-6xl mx-auto relative z-[2]">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-12" data-reveal="fade">
+        <div>
+          <div class="inline-flex items-center gap-2 text-gold2 text-[11px] font-bold tracking-[0.22em] uppercase mb-4">
+            <span class="w-8 h-px bg-gold2"></span>
+            Посчитайте сами
+          </div>
+          <h2 class="font-display font-bold text-4xl lg:text-6xl leading-[1.05] tracking-tight max-w-2xl">
+            Сколько стоит <em class="italic text-gold2">плохой лендинг</em> в деньгах
+          </h2>
+        </div>
+        <p class="text-[14px] text-cream/60 max-w-sm leading-relaxed">
+          Разница в конверсии — это не эстетика. Это реальные заявки, которые вы получаете или теряете каждый день. <span class="text-cream font-semibold">Меняйте цифры ниже</span> — пересчёт живой.
+        </p>
+      </div>
+
+      <!-- Shared inputs -->
+      <div class="bg-white rounded-2xl p-6 mb-4 border border-wine-dk/10 shadow-sm">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="calc-input-wrap">
+            <label>Посетителей в месяц</label>
+            <div class="calc-input">
+              <input type="number" id="cVisitors" value="1000" min="0" step="100">
+              <span class="calc-unit">чел</span>
+            </div>
+          </div>
+          <div class="calc-input-wrap">
+            <label>Закрытых сделок</label>
+            <div class="calc-input">
+              <input type="number" id="cClose" value="30" min="0" max="100" step="1">
+              <span class="calc-unit">%</span>
+            </div>
+          </div>
+          <div class="calc-input-wrap">
+            <label>Средний чек</label>
+            <div class="calc-input">
+              <input type="number" id="cCheck" value="500" min="0" step="50">
+              <span class="calc-unit">€</span>
+            </div>
+          </div>
+          <div class="calc-input-wrap">
+            <label>Реклама · CAC</label>
+            <div class="calc-input">
+              <input type="number" id="cCac" value="12" min="0" step="1">
+              <span class="calc-unit">€/клик</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VS grid -->
+      <div class="grid lg:grid-cols-[1fr_auto_1fr] gap-3 items-stretch">
+        <!-- BAD -->
+        <div class="calc-col calc-col-bad ornate-frame">
+          <div class="calc-col-head">
+            <span class="calc-dot calc-dot-bad"></span>
+            <span>Шаблонный лендинг</span>
+          </div>
+          <div class="calc-body">
+            <div class="calc-row">
+              <span class="calc-label">Конверсия</span>
+              <div class="calc-input calc-input-inline">
+                <input type="number" id="cBadConv" value="2" min="0" max="100" step="0.1">
+                <span class="calc-unit">%</span>
+              </div>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Заявок в месяц</span>
+              <span class="calc-val" id="cBadLeads">20</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Закрытых сделок</span>
+              <span class="calc-val" id="cBadDeals">6</span>
+            </div>
+          </div>
+          <div class="calc-total">
+            <div class="text-[10px] uppercase tracking-[0.2em] text-muted mb-1">Выручка в месяц</div>
+            <div class="font-display text-5xl lg:text-6xl font-bold text-danger leading-none"><span id="cBadRev">3 000</span><span class="text-[18px] text-muted ml-1 align-top">€</span></div>
+          </div>
+        </div>
+
+        <!-- VS center -->
+        <div class="calc-vs">
+          <div class="vs-letters">
+            <span>V</span><span>S</span>
+          </div>
+          <div class="vs-multiplier">
+            <div class="text-[9px] uppercase tracking-[0.2em] text-muted mb-1">Разница</div>
+            <div class="font-display font-bold text-5xl lg:text-6xl text-gold" id="cMultiplier">×6</div>
+          </div>
+        </div>
+
+        <!-- GOOD -->
+        <div class="calc-col calc-col-good ornate-frame">
+          <div class="calc-col-head">
+            <span class="calc-dot calc-dot-good"></span>
+            <span>С правильной архитектурой</span>
+          </div>
+          <div class="calc-body">
+            <div class="calc-row">
+              <span class="calc-label">Конверсия</span>
+              <div class="calc-input calc-input-inline">
+                <input type="number" id="cGoodConv" value="12" min="0" max="100" step="0.1">
+                <span class="calc-unit">%</span>
+              </div>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Заявок в месяц</span>
+              <span class="calc-val" id="cGoodLeads">120</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Закрытых сделок</span>
+              <span class="calc-val" id="cGoodDeals">36</span>
+            </div>
+          </div>
+          <div class="calc-total">
+            <div class="text-[10px] uppercase tracking-[0.2em] text-muted mb-1">Выручка в месяц</div>
+            <div class="font-display text-5xl lg:text-6xl font-bold text-success leading-none"><span id="cGoodRev">18 000</span><span class="text-[18px] text-muted ml-1 align-top">€</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delta callout -->
+      <div class="mt-8 flex items-center gap-3 flex-wrap" data-reveal="fade">
+        <span class="inline-flex items-center gap-2 bg-gold2 text-wine-dk px-4 py-2 rounded-full">
+          <span class="text-[10px] uppercase tracking-[0.2em] font-bold">Упущено в месяц</span>
+          <span class="font-display font-bold text-xl">+<span id="cDelta">15 000</span> €</span>
+        </span>
+        <span class="text-[13px] text-cream/65">Одинаковый бюджет на рекламу. Одинаковый продукт. Разница — <b class="text-cream">только в лендинге</b>.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT'S INCLUDED ============ -->
+  <section id="what" class="py-24 lg:py-32 px-6 lg:px-14 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-[1fr_1.2fr] gap-16 items-start">
+        <!-- LEFT -->
+        <div class="lg:sticky lg:top-24">
+          <div class="inline-flex items-center gap-2 text-gold text-[11px] font-bold tracking-[0.22em] uppercase mb-4" data-reveal="fade">
+            <span class="w-8 h-px bg-gold"></span>
+            Что входит в работу
+          </div>
+          <h2 class="font-display font-bold text-4xl lg:text-6xl leading-[1.14] tracking-tight text-wine-dk mb-6" data-reveal="fade">
+            Всё необходимое для лендинга, <em class="italic shimmer-text" data-text="который конвертирует">который конвертирует</em>
+          </h2>
+          <p class="text-[15px] text-muted leading-relaxed max-w-md" data-reveal="fade">
+            Вам не нужно искать отдельно копирайтера, дизайнера и верстальщика. Мы делаем всё в одной связке — так, чтобы каждый элемент усиливал следующий, а не жил отдельной жизнью.
+          </p>
+
+          <!-- Team at work photo -->
+          <div class="mt-10 hero-team-photo" data-reveal="fade">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80" alt="Команда работает над лендингом" loading="lazy" />
+            <div class="hero-team-photo-badge">
+              <span class="dot"></span>
+              <span>работаем над вашим проектом</span>
+            </div>
+          </div>
+
+          <!-- Animated page mockup -->
+          <div class="mt-8 page-mockup" data-reveal="fade">
+            <div class="mockup-bar">
+              <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+              <div class="ml-3 text-[10px] text-cream/40 font-mono">marketexpert.cz/landing</div>
+            </div>
+            <div class="mockup-section" data-highlight="0">
+              <div class="line gold" style="width: 30%"></div>
+              <div class="line dark" style="width: 80%; height: 12px; margin-top: 4px"></div>
+              <div class="line dark" style="width: 60%; height: 12px"></div>
+              <div class="btn-mock"></div>
+              <span class="mockup-tag">Заголовок + оффер</span>
+            </div>
+            <div class="mockup-section mockup-row" data-highlight="1">
+              <div class="feat"><div class="line" style="width: 40%"></div></div>
+              <div class="feat"><div class="line" style="width: 40%"></div></div>
+              <div class="feat"><div class="line" style="width: 40%"></div></div>
+              <span class="mockup-tag">Выгоды</span>
+            </div>
+            <div class="mockup-section" data-highlight="2">
+              <div class="line" style="width: 35%"></div>
+              <div class="line" style="width: 85%; height: 6px"></div>
+              <div class="line" style="width: 95%; height: 6px"></div>
+              <div class="line" style="width: 80%; height: 6px"></div>
+              <span class="mockup-tag">Доверие</span>
+            </div>
+            <div class="mockup-section mockup-dark" data-highlight="3">
+              <div class="line" style="width: 50%; background: rgba(255,255,255,.2)"></div>
+              <div class="btn-mock"></div>
+              <span class="mockup-tag">Финальный CTA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT — deliverables with connected line -->
+        <div class="relative">
+          <!-- Scroll-drawn vertical line -->
+          <svg class="deliverables-line" viewBox="0 0 4 900" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="2" y1="0" x2="2" y2="900" stroke="#d4920a" stroke-width="1.2" stroke-dasharray="4 4" id="delivLine"/>
+          </svg>
+
+          <div class="deliv-item" data-reveal="fade" data-deliv="0">
+            <div class="deliv-num"><span>01</span></div>
+            <div class="deliv-body">
+              <div class="text-[10px] uppercase tracking-[0.22em] text-gold mb-2">Этап 1 · 2–3 дня</div>
+              <h3 class="font-display font-bold text-2xl lg:text-3xl text-wine-dk mb-3">Анализ аудитории и конкурентов</h3>
+              <p class="text-[14.5px] text-muted leading-relaxed">Изучаем, что важно вашим клиентам, какие возражения нужно снять и что предлагают конкуренты. На этом строится вся структура — не на вдохновении.</p>
+              <div class="deliv-media">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80" alt="Анализ данных и конкурентов" loading="lazy">
+              </div>
+              <div class="deliv-tags">
+                <span>интервью</span><span>JTBD</span><span>бенчмарк</span><span>матрица возражений</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deliv-item" data-reveal="fade" data-deliv="1">
+            <div class="deliv-num"><span>02</span></div>
+            <div class="deliv-body">
+              <div class="text-[10px] uppercase tracking-[0.22em] text-gold mb-2">Этап 2 · 3–5 дней</div>
+              <h3 class="font-display font-bold text-2xl lg:text-3xl text-wine-dk mb-3">Архитектура и копирайтинг</h3>
+              <p class="text-[14.5px] text-muted leading-relaxed">Пишем все тексты: заголовок, оффер, блоки выгод, отработку возражений, призыв к действию. Структура — «проблема → решение → доверие → действие».</p>
+              <div class="deliv-media">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=700&q=80" alt="Копирайтинг и текст" loading="lazy">
+              </div>
+              <div class="deliv-tags">
+                <span>prototype</span><span>offer</span><span>все экраны</span><span>CTA</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deliv-item" data-reveal="fade" data-deliv="2">
+            <div class="deliv-num"><span>03</span></div>
+            <div class="deliv-body">
+              <div class="text-[10px] uppercase tracking-[0.22em] text-gold mb-2">Этап 3 · 4–6 дней</div>
+              <h3 class="font-display font-bold text-2xl lg:text-3xl text-wine-dk mb-3">UI-дизайн в Figma</h3>
+              <p class="text-[14.5px] text-muted leading-relaxed">Визуальный дизайн, который помогает читать и конвертировать. Mobile-first: сначала телефон, потом десктоп — а не наоборот.</p>
+              <div class="deliv-media">
+                <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=700&q=80" alt="UI-дизайн макетов" loading="lazy">
+              </div>
+              <div class="deliv-tags">
+                <span>mobile-first</span><span>Figma</span><span>дизайн-система</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deliv-item" data-reveal="fade" data-deliv="3">
+            <div class="deliv-num"><span>04</span></div>
+            <div class="deliv-body">
+              <div class="text-[10px] uppercase tracking-[0.22em] text-gold mb-2">Этап 4 · 3–5 дней</div>
+              <h3 class="font-display font-bold text-2xl lg:text-3xl text-wine-dk mb-3">Вёрстка и аналитика</h3>
+              <p class="text-[14.5px] text-muted leading-relaxed">Чистый HTML/CSS или конструктор — по договорённости. Подключаем GA4, GTM, настраиваем цели и микроконверсии, чтобы потом было что оптимизировать.</p>
+              <div class="deliv-media">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80" alt="Аналитика и метрики" loading="lazy">
+              </div>
+              <div class="deliv-tags">
+                <span>HTML/CSS</span><span>GA4</span><span>GTM</span><span>pagespeed 95+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SHOWREEL — YouTube examples (click to play) ============ -->
+  <section id="showreel" class="showreel-sec py-24 lg:py-32 px-6 lg:px-14 relative overflow-hidden">
+    <div class="showreel-bg" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto relative z-[2]">
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 lg:gap-16 items-end mb-14 lg:mb-16">
+        <div data-reveal="fade">
+          <div class="inline-flex items-center gap-2 text-gold text-[11px] font-bold tracking-[0.26em] uppercase mb-4">
+            <span class="w-8 h-px bg-gold"></span>
+            Вдохновение и референсы
+          </div>
+          <h2 class="font-display font-bold text-4xl lg:text-[3.25rem] leading-[1.05] tracking-tight text-wine-dk">
+            Примеры сайтов <em class="italic text-gold">с характером</em>
+          </h2>
+          <p class="mt-5 text-[15px] text-muted leading-relaxed max-w-md">
+            Три записи с экрана: динамика, крупная типографика, сочные визуальные ходы. Нажмите на превью — ролик откроется прямо здесь. Если видите <strong class="text-wine-dk">ошибку 153</strong>: откройте страницу через локальный сервер (не двойной клик по файлу) или по ссылке ниже на YouTube — у встраиваемого плеера должны уходить корректные заголовки и не быть режима <code class="text-gold font-semibold">file://</code>.
+          </p>
+          <p class="mt-4 text-[13px] text-muted/90">
+            Исходные ролики на YouTube:
+            <a href="https://youtu.be/GgkmkUC0g9U" target="_blank" rel="noopener noreferrer" class="text-gold font-semibold hover:underline">ролик 1</a>
+            ·
+            <a href="https://youtu.be/PMs8f84tNKM" target="_blank" rel="noopener noreferrer" class="text-gold font-semibold hover:underline">ролик 2</a>
+            ·
+            <a href="https://youtu.be/2a8eBpO_O9o" target="_blank" rel="noopener noreferrer" class="text-gold font-semibold hover:underline">ролик 3</a>
+          </p>
+        </div>
+        <div class="showreel-highlight ornate-frame bg-wine/95 text-cream p-6 lg:p-8 rounded-md border border-gold/25 shadow-2xl" data-reveal="fade">
+          <div class="text-[10px] uppercase tracking-[0.28em] text-gold2 mb-2">Как мы это читаем</div>
+          <p class="font-display text-xl lg:text-2xl leading-snug text-cream/95">
+            Хороший лендинг — это не «красивая картинка», а <span class="text-gold2 italic">ритм скролла</span>, акценты и ясный следующий шаг для пользователя.
+          </p>
+          <p class="mt-4 text-[13px] text-cream/55 leading-relaxed">
+            Эти примеры — о том, как motion и композиция удерживают внимание. Ваш проект будет под ваш продукт и ЦА; здесь — общий уровень подачи, к которому можно ориентироваться.
+          </p>
+        </div>
+      </div>
+
+      <div class="showreel-grid">
+        <article class="video-card" data-reveal="fade">
+          <div class="video-card__meta">
+            <span class="video-card__num">01</span>
+            <span class="video-card__label">Референс</span>
+          </div>
+          <div class="yt-embed" data-yt="GgkmkUC0g9U" data-title="Пример сайта · видео 1">
+            <button type="button" class="yt-poster" aria-label="Воспроизвести видео на странице">
+              <img src="https://i.ytimg.com/vi/GgkmkUC0g9U/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+              <span class="yt-play" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </button>
+          </div>
+          <p class="video-card__cap">Запись экрана · динамика и подача</p>
+          <a href="https://youtu.be/GgkmkUC0g9U" target="_blank" rel="noopener noreferrer" class="video-card__yt-fallback">Смотреть на YouTube ↗</a>
+        </article>
+
+        <article class="video-card" data-reveal="fade" style="transition-delay:80ms">
+          <div class="video-card__meta">
+            <span class="video-card__num">02</span>
+            <span class="video-card__label">Референс</span>
+          </div>
+          <div class="yt-embed" data-yt="PMs8f84tNKM" data-title="Пример сайта · видео 2">
+            <button type="button" class="yt-poster" aria-label="Воспроизвести видео на странице">
+              <img src="https://i.ytimg.com/vi/PMs8f84tNKM/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+              <span class="yt-play" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </button>
+          </div>
+          <p class="video-card__cap">Интерфейс и визуальный язык</p>
+          <a href="https://youtu.be/PMs8f84tNKM" target="_blank" rel="noopener noreferrer" class="video-card__yt-fallback">Смотреть на YouTube ↗</a>
+        </article>
+
+        <article class="video-card" data-reveal="fade" style="transition-delay:160ms">
+          <div class="video-card__meta">
+            <span class="video-card__num">03</span>
+            <span class="video-card__label">Референс</span>
+          </div>
+          <div class="yt-embed" data-yt="2a8eBpO_O9o" data-title="Пример сайта · видео 3">
+            <button type="button" class="yt-poster" aria-label="Воспроизвести видео на странице">
+              <img src="https://i.ytimg.com/vi/2a8eBpO_O9o/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+              <span class="yt-play" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </button>
+          </div>
+          <p class="video-card__cap">Скролл, акценты, детали</p>
+          <a href="https://youtu.be/2a8eBpO_O9o" target="_blank" rel="noopener noreferrer" class="video-card__yt-fallback">Смотреть на YouTube ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS — HORIZONTAL TIMELINE ============ -->
+  <section id="process" class="bg-wine text-cream py-24 lg:py-28 px-6 lg:px-14 relative overflow-hidden">
+    <!-- Prague bg photo -->
+    <div class="process-bg-photo" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy"/>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative">
+      <div class="mb-14 max-w-2xl" data-reveal="fade">
+        <div class="inline-flex items-center gap-2 text-gold2 text-[11px] font-bold tracking-[0.22em] uppercase mb-4">
+          <span class="w-8 h-px bg-gold2"></span>
+          Как это работает
+        </div>
+        <h2 class="font-display font-bold text-4xl lg:text-6xl leading-[1.02] tracking-tight">
+          От заявки <em class="italic text-gold2">до готового лендинга</em>.
+        </h2>
+        <p class="mt-5 text-[15px] text-cream/55 max-w-lg leading-relaxed">Работаем по чёткому процессу — без размытых сроков и бесконечных правок. Каждый этап имеет артефакт, который вы видите и согласовываете.</p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="process-track">
+        <!-- Progress line -->
+        <div class="process-line">
+          <div class="process-line-fill" id="processLineFill"></div>
+        </div>
+
+        <div class="process-steps">
+          <article class="process-step" data-step="0">
+            <div class="step-indicator"><span>01</span></div>
+            <div class="step-meta">Этап 01 · День 1–2</div>
+            <h3 class="step-title">Заявка и бриф</h3>
+            <p class="step-desc">Вы оставляете заявку, мы присылаем короткий бриф. Звонок 30 минут — понимаем задачу и контекст.</p>
+          </article>
+          <article class="process-step" data-step="1">
+            <div class="step-indicator"><span>02</span></div>
+            <div class="step-meta">Этап 02 · День 3–5</div>
+            <h3 class="step-title">Анализ и структура</h3>
+            <p class="step-desc">Изучаем вашу аудиторию и конкурентов. Согласовываем структуру страницы до старта дизайна.</p>
+          </article>
+          <article class="process-step" data-step="2">
+            <div class="step-indicator"><span>03</span></div>
+            <div class="step-meta">Этап 03 · День 6–10</div>
+            <h3 class="step-title">Текст</h3>
+            <p class="step-desc">Пишем все блоки: заголовок, выгоды, отзывы, CTA. Согласовываем с вами итерационно.</p>
+          </article>
+          <article class="process-step" data-step="3">
+            <div class="step-indicator"><span>04</span></div>
+            <div class="step-meta">Этап 04 · День 10–16</div>
+            <h3 class="step-title">Дизайн</h3>
+            <p class="step-desc">Макет в Figma. Mobile-first. Показываем, вносим правки по договорённости — 1–2 раунда.</p>
+          </article>
+          <article class="process-step" data-step="4">
+            <div class="step-indicator"><span>05</span></div>
+            <div class="step-meta">Этап 05 · День 16–21</div>
+            <h3 class="step-title">Вёрстка и запуск</h3>
+            <p class="step-desc">Верстаем, настраиваем GA4, проверяем скорость загрузки. Публикуем — вы получаете готовый инструмент.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section id="pricing" class="py-24 lg:py-32 px-6 lg:px-14 bg-cream">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <div class="inline-flex items-center gap-3 text-gold text-[11px] font-bold tracking-[0.22em] uppercase mb-4" data-reveal="fade">
+          <span class="w-8 h-px bg-gold"></span>
+          Стоимость
+          <span class="w-8 h-px bg-gold"></span>
+        </div>
+        <h2 class="font-display font-bold text-4xl lg:text-6xl leading-[1.02] tracking-tight text-wine-dk" data-reveal="fade">
+          Выберите <em class="italic text-gold">формат</em>.
+        </h2>
+        <p class="mt-4 text-[14.5px] text-muted max-w-lg mx-auto" data-reveal="fade">Все пакеты включают анализ, текст, дизайн и вёрстку. Рекламный бюджет не входит — только работа над лендингом.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 lg:gap-0">
+        <!-- STARTER -->
+        <article class="price-card" data-reveal="fade">
+          <div class="price-tier">Старт</div>
+          <div class="price-tagline">Быстро и по делу</div>
+          <div class="price-hero">
+            <span class="font-display font-bold text-5xl lg:text-6xl">690<span class="text-2xl align-top">€</span></span>
+            <span class="price-czk">от 17 250 CZK</span>
+          </div>
+          <div class="price-timing">~14 дней · 1 версия · 1 раунд правок</div>
+          <ul class="price-features">
+            <li><span>✓</span> Анализ ЦА и конкурентов</li>
+            <li><span>✓</span> Структура страницы</li>
+            <li><span>✓</span> Копирайтинг всех блоков</li>
+            <li><span>✓</span> UI-дизайн (mobile-first)</li>
+            <li><span>✓</span> Вёрстка + форма</li>
+            <li><span>✓</span> GA4 + GTM (базовые цели)</li>
+            <li class="dim"><span>—</span> Квиз или мини-анкета</li>
+            <li class="dim"><span>—</span> A/B тест</li>
+          </ul>
+          <a href="#order" class="price-cta magnetic" data-magnetic-strength="0.25">Заказать Старт</a>
+        </article>
+
+        <!-- FEATURED -->
+        <article class="price-card price-card-featured" data-reveal="fade" style="transition-delay:100ms">
+          <div class="price-badge">Выбор большинства</div>
+          <div class="price-tier price-tier-light">Рост</div>
+          <div class="price-tagline light">Полный продакшн</div>
+          <div class="price-hero light">
+            <span class="font-display font-bold text-5xl lg:text-6xl text-cream">1 190<span class="text-2xl align-top">€</span></span>
+            <span class="price-czk light">от 29 750 CZK</span>
+          </div>
+          <div class="price-timing light">~21 день · 2 раунда правок</div>
+          <ul class="price-features light">
+            <li><span>✓</span> Всё из пакета Старт</li>
+            <li><span>✓</span> Углублённый анализ + интервью</li>
+            <li><span>✓</span> Квиз или мини-анкета</li>
+            <li><span>✓</span> Демо-видео или интерактив</li>
+            <li><span>✓</span> Открытая стена отзывов</li>
+            <li><span>✓</span> Настройка микроконверсий</li>
+            <li><span>✓</span> 2 раунда правок</li>
+            <li><span>✓</span> Рекомендации по рекламе</li>
+          </ul>
+          <a href="#order" class="price-cta price-cta-gold magnetic" data-magnetic-strength="0.3">Заказать Рост</a>
+        </article>
+
+        <!-- SCALE -->
+        <article class="price-card" data-reveal="fade" style="transition-delay:200ms">
+          <div class="price-tier">Масштаб</div>
+          <div class="price-tagline">Под рост и тесты</div>
+          <div class="price-hero">
+            <span class="font-display font-bold text-5xl lg:text-6xl">1 990<span class="text-2xl align-top">€</span></span>
+            <span class="price-czk">от 49 750 CZK</span>
+          </div>
+          <div class="price-timing">~30 дней · без лимита правок</div>
+          <ul class="price-features">
+            <li><span>✓</span> Всё из пакета Рост</li>
+            <li><span>✓</span> До 3 версий под сегменты</li>
+            <li><span>✓</span> A/B тест с аналитикой</li>
+            <li><span>✓</span> Персонализация по источнику</li>
+            <li><span>✓</span> Воронка: лендинг + thank-you</li>
+            <li><span>✓</span> Без ограничений на правки</li>
+            <li><span>✓</span> Месяц поддержки после запуска</li>
+            <li><span>✓</span> Настройка рекламы под связку</li>
+          </ul>
+          <a href="#order" class="price-cta magnetic" data-magnetic-strength="0.25">Заказать Масштаб</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REVIEWS — BIG RESULTS ============ -->
+  <section id="reviews" class="py-24 lg:py-28 bg-wine text-cream relative overflow-hidden">
+    <div class="max-w-7xl mx-auto relative px-6 lg:px-14">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-14">
+        <div data-reveal="fade">
+          <div class="inline-flex items-center gap-2 text-gold2 text-[11px] font-bold tracking-[0.22em] uppercase mb-4">
+            <span class="w-8 h-px bg-gold2"></span>
+            Результаты, а не «отличная работа»
+          </div>
+          <h2 class="font-display font-bold text-4xl lg:text-6xl leading-[1.02] tracking-tight max-w-xl">
+            Конкретные <em class="italic text-gold2">цифры до</em> и <em class="italic text-gold2">после</em>
+          </h2>
+        </div>
+        <p class="text-[14px] text-cream/55 max-w-xs" data-reveal="fade">Хороший лендинг измеряется заявками, а не лайками в портфолио. Поэтому показываем метрики.</p>
+      </div>
+    </div>
+
+    <!-- Marquee carousel (full-bleed) -->
+    <div class="rev-marquee" data-reveal="fade">
+      <div class="rev-track">
+        <article class="review-card">
+          <div class="review-quote-mark">“</div>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-result">+567 % <span>заявок</span></div>
+          <p class="review-text">До нового лендинга получали 3–5 заявок в месяц при том же трафике. После — 34 за первый месяц. Просто изменили структуру и заголовок.</p>
+          <div class="review-meta">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=160&h=160&q=80" alt="Олег К." loading="lazy">
+            <div>
+              <div class="review-who">Олег К.</div>
+              <div class="review-co">IT-консалтинг · Прага</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-quote-mark">“</div>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-result">×5,6 <span>конверсия</span></div>
+          <p class="review-text">Раньше платила дизайнерам и получала красивые картинки. Здесь впервые объяснили, почему структура такая, а не иначе. Конверсия выросла с 1,2 % до 6,8 %.</p>
+          <div class="review-meta">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=160&h=160&q=80" alt="Мария Г." loading="lazy">
+            <div>
+              <div class="review-who">Мария Г.</div>
+              <div class="review-co">Онлайн-школа · Брно</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-quote-mark">“</div>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-result">8 клиентов <span>за 2 недели</span></div>
+          <p class="review-text">Запустили новое направление — юридические услуги. За первые две недели после публикации закрыли 8 клиентов. Канал вообще раньше не работал.</p>
+          <div class="review-meta">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&h=160&q=80" alt="Дмитрий Л." loading="lazy">
+            <div>
+              <div class="review-who">Дмитрий Л.</div>
+              <div class="review-co">Юридические услуги · Прага</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-quote-mark">“</div>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-result">−38 % <span>цена лида</span></div>
+          <p class="review-text">Перезапуск лендинга окупил стоимость работы за 11 дней. Стоимость заявки упала почти вдвое, при этом качество лидов выросло — меньше «просто спросить».</p>
+          <div class="review-meta">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=160&h=160&q=80" alt="Ярослав П." loading="lazy">
+            <div>
+              <div class="review-who">Ярослав П.</div>
+              <div class="review-co">Ремонты · Кладно</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-quote-mark">“</div>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-result">+4 200 € <span>в месяц</span></div>
+          <p class="review-text">Думала, что проблема в продукте. Оказалось — в оффере. Переписали заголовок и первый экран — выручка за следующий месяц +4 200 € без доп. бюджета.</p>
+          <div class="review-meta">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=160&h=160&q=80" alt="Наталья В." loading="lazy">
+            <div>
+              <div class="review-who">Наталья В.</div>
+              <div class="review-co">Косметология · Прага 6</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-quote-mark">“</div>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-result">×3,2 <span>CTR рекламы</span></div>
+          <p class="review-text">Оказалось, что хороший лендинг ещё и рекламу тянет. Меньше отказов — выше качество рекламы в Google, ниже стоимость клика. Получили эффект 2 в 1.</p>
+          <div class="review-meta">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=160&h=160&q=80" alt="Игорь С." loading="lazy">
+            <div>
+              <div class="review-who">Игорь С.</div>
+              <div class="review-co">B2B-сервис · Brno</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- DUPLICATE for seamless loop -->
+        <article class="review-card">
+          <div class="review-quote-mark">“</div>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-result">+567 % <span>заявок</span></div>
+          <p class="review-text">До нового лендинга получали 3–5 заявок в месяц при том же трафике. После — 34 за первый месяц. Просто изменили структуру и заголовок.</p>
+          <div class="review-meta">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=160&h=160&q=80" alt="Олег К." loading="lazy">
+            <div>
+              <div class="review-who">Олег К.</div>
+              <div class="review-co">IT-консалтинг · Прага</div>
+            </div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-quote-mark">“</div>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-result">×5,6 <span>конверсия</span></div>
+          <p class="review-text">Раньше платила дизайнерам и получала красивые картинки. Здесь впервые объяснили, почему структура такая, а не иначе.</p>
+          <div class="review-meta">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=160&h=160&q=80" alt="Мария Г." loading="lazy">
+            <div>
+              <div class="review-who">Мария Г.</div>
+              <div class="review-co">Онлайн-школа · Брно</div>
+            </div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-quote-mark">“</div>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-result">8 клиентов <span>за 2 недели</span></div>
+          <p class="review-text">Запустили новое направление — юридические услуги. За первые две недели после публикации закрыли 8 клиентов.</p>
+          <div class="review-meta">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&h=160&q=80" alt="Дмитрий Л." loading="lazy">
+            <div>
+              <div class="review-who">Дмитрий Л.</div>
+              <div class="review-co">Юридические услуги · Прага</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="faq-sec py-24 lg:py-32 px-6 lg:px-14 relative overflow-hidden">
+    <div class="faq-bg-photo" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1513805959324-96eb66ca8713?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy" />
+    </div>
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-[1fr_1.3fr] gap-14 relative z-[2]">
+      <div class="lg:sticky lg:top-24 self-start">
+        <div class="inline-flex items-center gap-2 text-gold text-[11px] font-bold tracking-[0.22em] uppercase mb-4" data-reveal="fade">
+          <span class="w-8 h-px bg-gold"></span>
+          FAQ
+        </div>
+        <h2 class="font-display font-bold text-4xl lg:text-5xl leading-[1.02] tracking-tight text-wine-dk" data-reveal="fade">
+          Часто задаваемые <em class="italic text-gold">вопросы</em>.
+        </h2>
+        <p class="mt-5 text-[14.5px] text-muted leading-relaxed max-w-sm" data-reveal="fade">Если вашего вопроса нет в списке — просто напишите нам, ответим в течение рабочего дня.</p>
+
+        <div class="mt-8 bg-cream2 rounded-2xl p-7 ornate-frame" data-reveal="fade">
+          <div class="text-[14px] text-muted leading-relaxed mb-5">Готовы обсудить ваш проект? Заполните короткую форму — расскажите о продукте и задаче, мы вернёмся с предложением.</div>
+          <a href="#order" class="inline-flex items-center gap-3 bg-wine text-cream px-6 py-3 rounded-md font-bold text-[12px] tracking-[0.1em] uppercase hover:bg-gold hover:text-wine-dk transition magnetic" data-magnetic-strength="0.3">
+            Обсудить проект
+            <span class="text-gold2">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <details class="faq-item" open>
+          <summary>Сколько времени занимает создание лендинга?<span class="faq-chev">+</span></summary>
+          <div class="faq-body">В пакете «Старт» — около 14 дней. «Рост» — 21 день. «Масштаб» — до 30 дней. Сроки зависят от скорости ваших согласований: если отвечаете быстро, делаем быстрее.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Вы пишете тексты сами или нужно предоставить материалы?<span class="faq-chev">+</span></summary>
+          <div class="faq-body">Тексты входят в стоимость всех пакетов. Вам нужно только ответить на вопросы брифа и рассказать о продукте. Всё остальное — наша работа. Если у вас уже есть качественные тексты — обсудим скидку.</div>
+        </details>
+        <details class="faq-item">
+          <summary>На какой платформе будет сделан лендинг?<span class="faq-chev">+</span></summary>
+          <div class="faq-body">Чаще всего — чистый HTML/CSS для максимальной скорости загрузки. Если вам нужен конструктор (Webflow, Tilda, WordPress) — обсуждаем индивидуально. Для Чехии рекомендуем hosting и домен .cz.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Что если лендинг не даст нужный результат?<span class="faq-chev">+</span></summary>
+          <div class="faq-body">Мы строим лендинг на основе данных, а не интуиции. Если после запуска видим узкие места — даём рекомендации. В пакете «Масштаб» включён месяц поддержки с итерациями по аналитике. Гарантии конкретной конверсии никто дать не может — слишком много переменных (трафик, продукт, сезон).</div>
+        </details>
+        <details class="faq-item">
+          <summary>Можно заказать только дизайн или только текст?<span class="faq-chev">+</span></summary>
+          <div class="faq-body">Да, возможны отдельные услуги. Напишите нам — уточним задачу и назовём стоимость индивидуально. Обычно это выгодно, если у вас уже есть часть материалов.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Занимаетесь ли вы настройкой рекламы на лендинг?<span class="faq-chev">+</span></summary>
+          <div class="faq-body">Да, это одно из наших ключевых направлений. Ведём Google Ads и Meta Ads. Если заказываете лендинг и рекламу вместе — делаем их как единую связку, что даёт лучший результат и экономит вам 15 % на связанном заказе.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Работаете только с компаниями из Чехии?<span class="faq-chev">+</span></summary>
+          <div class="faq-body">Нет, работаем с заказчиками из любой страны. Большая часть клиентов — Чехия, Украина, Польша, но делали проекты для Германии, Эмиратов и США. Все коммуникации — русский, украинский, английский или чешский — как удобно.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL FORM ============ -->
+  <section id="order" class="bg-wine text-cream py-24 lg:py-32 px-6 lg:px-14 relative overflow-hidden">
+    <div class="cta-bg-photo" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1581431886211-6b932f8367f2?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy"/>
+    </div>
+    <div class="absolute inset-0 opacity-[0.04] pointer-events-none bg-diag-lines"></div>
+    <div class="absolute -top-20 right-1/4 w-[500px] h-[500px] rounded-full bg-gold/10 blur-3xl"></div>
+
+    <div class="max-w-6xl mx-auto relative grid lg:grid-cols-[1fr_1fr] gap-14 items-center">
+      <div data-reveal="fade">
+        <div class="inline-flex items-center gap-2 text-gold2 text-[11px] font-bold tracking-[0.22em] uppercase mb-4">
+          <span class="w-8 h-px bg-gold2"></span>
+          Оставить заявку
+        </div>
+        <h2 class="font-display font-bold text-4xl lg:text-6xl leading-[0.98] tracking-tight">
+          Получите лендинг,<br/>
+          <em class="italic text-gold2">который приносит заявки.</em>
+        </h2>
+        <p class="mt-6 text-[15px] text-cream/60 leading-relaxed max-w-lg">Расскажите о своём продукте — мы изучим задачу, предложим структуру и назовём точную стоимость. Без общих слов и продаж по телефону.</p>
+
+        <div class="mt-10 space-y-4 text-[13px] text-cream/70">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold">✓</span>
+            Отвечаем в течение рабочего дня
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold">✓</span>
+            Бесплатная консультация по задаче (30 мин)
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold">✓</span>
+            Без спама и продаж «по телефону»
+          </div>
+        </div>
+      </div>
+
+      <form class="form-box" onsubmit="handleFormSubmit(event)" data-reveal="fade">
+        <div class="form-head">
+          <h3 class="font-display text-2xl font-bold">Расскажите о проекте</h3>
+          <p class="text-[13px] text-cream/50 mt-1">Заполняется за 40 секунд</p>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label>Ваше имя</label>
+            <input type="text" placeholder="Как к вам обращаться?" required>
+          </div>
+          <div class="field">
+            <label>Телефон или Email</label>
+            <input type="text" placeholder="+420 … или email@…" required>
+          </div>
+          <div class="field field-full">
+            <label>Какой пакет интересует?</label>
+            <div class="pkg-picker">
+              <label class="pkg-opt"><input type="radio" name="pkg" value="maybe" checked><span>Ещё не решил(а)</span></label>
+              <label class="pkg-opt"><input type="radio" name="pkg" value="start"><span>Старт · 690 €</span></label>
+              <label class="pkg-opt"><input type="radio" name="pkg" value="growth"><span>Рост · 1 190 €</span></label>
+              <label class="pkg-opt"><input type="radio" name="pkg" value="scale"><span>Масштаб · 1 990 €</span></label>
+            </div>
+          </div>
+          <div class="field field-full">
+            <label>О продукте и задаче</label>
+            <textarea rows="3" placeholder="Что продаёте? Есть ли уже лендинг? Откуда идёт трафик?"></textarea>
+          </div>
+          <button type="submit" class="form-submit magnetic" id="formSubmit" data-magnetic-strength="0.3">
+            <span>Отправить заявку</span>
+            <span class="arrow">→</span>
+          </button>
+          <div class="form-note">Нажимая «Отправить», вы соглашаетесь с обработкой данных. Это не значит «я согласен получать спам».</div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-wine2 text-cream/70 py-10 px-6 lg:px-14">
+    <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-6">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="M:E agency" class="w-10 h-10 object-contain" />
+        <div>
+          <div class="font-display font-semibold text-[18px] text-cream">M:E <span class="text-gold2 font-normal italic">agency</span></div>
+          <div class="text-[11px] text-cream/40 mt-0.5">© 2026 · Прага, Чехия · Создание лендингов</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-7 text-[13px] flex-wrap">
+        <a href="tel:+420705995770" class="hover:text-gold transition">+420 705 995 770</a>
+        <a href="mailto:hello@marketexpert.cz" class="hover:text-gold transition">hello@marketexpert.cz</a>
+        <a href="https://marketexpert.cz" target="_blank" rel="noopener" class="hover:text-gold transition">marketexpert.cz ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

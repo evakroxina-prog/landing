@@ -7,7 +7,11 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Создание лендинг-пейдж — Market Expert Agency · Прага</title>
   <meta name="description" content="Создаём лендинги под ключ: анализ, текст, дизайн, вёрстка. Пакеты от 200 €. Прага." />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script>
+    window.__GA4_MEASUREMENT_ID__ = 'G-SPKHXMCQGM';
+  </script>
+  <!-- Иконка вкладки = ваш logo.png из корня репозитория (не вспомогательный svg с буквой M) -->
+  <link rel="icon" href="logo.png" type="image/png" />
   <link rel="apple-touch-icon" href="logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -980,7 +984,7 @@
       </div>
 
       <!-- Formspree: https://formspree.io · уведомления и домен настраиваются в кабинете -->
-      <form class="form-box" action="https://formspree.io/f/xpqbdkav" method="POST" onsubmit="handleFormSubmit(event)" data-reveal="fade">
+      <form id="leadForm" class="form-box" action="https://formspree.io/f/xpqbdkav" method="POST" data-reveal="fade">
         <input type="hidden" name="_subject" value="Заявка с лендинга MarketExpert">
         <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-head">
@@ -1013,7 +1017,7 @@
             <label>О продукте и задаче</label>
             <textarea name="message" rows="3" placeholder="Что продаёте? Есть ли уже лендинг? Откуда идёт трафик?"></textarea>
           </div>
-          <button type="submit" class="form-submit magnetic" data-magnetic-strength="0.3">
+          <button type="submit" class="form-submit">
             <span>Отправить заявку</span>
             <span class="arrow">→</span>
           </button>
@@ -1055,9 +1059,6 @@
     </div>
   </footer>
 
-  <script>
-    window.__GA4_MEASUREMENT_ID__ = 'G-SPKHXMCQGM';
-  </script>
   <script src="script.js"></script>
 </body>
 </html>

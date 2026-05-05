@@ -6,8 +6,10 @@
   <!-- YouTube embed (ошибка 153): плееру нужен нормальный Referer; same-origin / file:// ломают встраивание -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Создание лендинг-пейдж — Market Expert Agency · Прага</title>
-  <meta name="description" content="Создаём лендинги под ключ: анализ, текст, дизайн, вёрстка. От 690 €. Прага." />
-  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <meta name="description" content="Создаём лендинги под ключ: анализ, текст, дизайн, вёрстка. Пакеты от 200 €. Прага." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -98,7 +100,7 @@
           </h1>
 
           <p class="mt-7 text-[16px] text-cream/80 leading-[1.6] max-w-xl">
-            Создаём страницы под ключ: <b class="text-cream">анализ аудитории</b>, <b class="text-cream">текст</b>, <b class="text-cream">дизайн</b> и <b class="text-cream">вёрстка</b>. Срок — от 14 дней. Вы получаете инструмент, который работает в паре с рекламой — а не красивый макет «в стол».
+            Создаём страницы под ключ: <b class="text-cream">анализ аудитории</b>, <b class="text-cream">текст</b>, <b class="text-cream">дизайн</b> и <b class="text-cream">вёрстка</b>. Минимальный срок — <b class="text-cream">5 дней</b> в пакете «Базовый». Вы получаете инструмент, который работает в паре с рекламой — а не красивый макет «в стол».
           </p>
 
           <div class="mt-8 flex flex-wrap gap-3 items-center">
@@ -625,15 +627,15 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-5 lg:gap-0">
-        <!-- STARTER -->
+        <!-- БАЗОВЫЙ -->
         <article class="price-card" data-reveal="fade">
-          <div class="price-tier">Старт</div>
-          <div class="price-tagline">Быстро и по делу</div>
+          <div class="price-tier">Базовый</div>
+          <div class="price-tagline">Быстрый тест гипотезы</div>
           <div class="price-hero">
-            <span class="font-display font-bold text-5xl lg:text-6xl">690<span class="text-2xl align-top">€</span></span>
-            <span class="price-czk">от 17 250 CZK</span>
+            <span class="font-display font-bold text-5xl lg:text-6xl">200<span class="text-2xl align-top">€</span></span>
+            <span class="price-czk">от 5 000 CZK</span>
           </div>
-          <div class="price-timing">~14 дней · 1 версия · 1 раунд правок</div>
+          <div class="price-timing">~5 дней · 1 версия · 1 раунд правок</div>
           <ul class="price-features">
             <li><span>✓</span> Анализ ЦА и конкурентов</li>
             <li><span>✓</span> Структура страницы</li>
@@ -644,21 +646,22 @@
             <li class="dim"><span>—</span> Квиз или мини-анкета</li>
             <li class="dim"><span>—</span> A/B тест</li>
           </ul>
-          <a href="#order" class="price-cta magnetic" data-magnetic-strength="0.25">Заказать Старт</a>
+          <p class="price-blurb">Цена снижена до 200&nbsp;€ (было 690&nbsp;€). Срок сокращён до ~5 дней (было 14).</p>
+          <a href="#order-early" class="price-cta magnetic" data-magnetic-strength="0.25">Заказать Базовый</a>
         </article>
 
-        <!-- FEATURED -->
+        <!-- FEATURED — РОСТ -->
         <article class="price-card price-card-featured" data-reveal="fade" style="transition-delay:100ms">
           <div class="price-badge">Выбор большинства</div>
           <div class="price-tier price-tier-light">Рост</div>
-          <div class="price-tagline light">Полный продакшн</div>
+          <div class="price-tagline light">Всё для масштабирования</div>
           <div class="price-hero light">
-            <span class="font-display font-bold text-5xl lg:text-6xl text-cream">1 190<span class="text-2xl align-top">€</span></span>
-            <span class="price-czk light">от 29 750 CZK</span>
+            <span class="font-display font-bold text-5xl lg:text-6xl text-cream">750<span class="text-2xl align-top">€</span></span>
+            <span class="price-czk light">от 18 750 CZK</span>
           </div>
-          <div class="price-timing light">~21 день · 2 раунда правок</div>
+          <div class="price-timing light">~14 дней · 2 раунда правок</div>
           <ul class="price-features light">
-            <li><span>✓</span> Всё из пакета Старт</li>
+            <li><span>✓</span> Всё из пакета Базовый</li>
             <li><span>✓</span> Углублённый анализ + интервью</li>
             <li><span>✓</span> Квиз или мини-анкета</li>
             <li><span>✓</span> Демо-видео или интерактив</li>
@@ -667,18 +670,19 @@
             <li><span>✓</span> 2 раунда правок</li>
             <li><span>✓</span> Рекомендации по рекламе</li>
           </ul>
-          <a href="#order" class="price-cta price-cta-gold magnetic" data-magnetic-strength="0.3">Заказать Рост</a>
+          <p class="price-blurb light price-blurb--light">Цена оптимизирована до 750&nbsp;€ (было 1&nbsp;190&nbsp;€). Срок ускорен до ~14 дней (было 21).</p>
+          <a href="#order-early" class="price-cta price-cta-gold magnetic" data-magnetic-strength="0.3">Заказать Рост</a>
         </article>
 
-        <!-- SCALE -->
+        <!-- МАСШТАБ -->
         <article class="price-card" data-reveal="fade" style="transition-delay:200ms">
           <div class="price-tier">Масштаб</div>
-          <div class="price-tagline">Под рост и тесты</div>
+          <div class="price-tagline">Воронка, тесты, сопровождение</div>
           <div class="price-hero">
-            <span class="font-display font-bold text-5xl lg:text-6xl">1 990<span class="text-2xl align-top">€</span></span>
-            <span class="price-czk">от 49 750 CZK</span>
+            <span class="font-display font-bold text-5xl lg:text-6xl">1 500<span class="text-2xl align-top">€</span></span>
+            <span class="price-czk">от 37 500 CZK</span>
           </div>
-          <div class="price-timing">~30 дней · без лимита правок</div>
+          <div class="price-timing">~25 дней · без лимита правок</div>
           <ul class="price-features">
             <li><span>✓</span> Всё из пакета Рост</li>
             <li><span>✓</span> До 3 версий под сегменты</li>
@@ -689,8 +693,65 @@
             <li><span>✓</span> Месяц поддержки после запуска</li>
             <li><span>✓</span> Настройка рекламы под связку</li>
           </ul>
-          <a href="#order" class="price-cta magnetic" data-magnetic-strength="0.25">Заказать Масштаб</a>
+          <p class="price-blurb">Цена стала конкурентнее — 1&nbsp;500&nbsp;€ (было 1&nbsp;990&nbsp;€). Срок оптимизирован до ~25 дней (было 30).</p>
+          <a href="#order-early" class="price-cta magnetic" data-magnetic-strength="0.25">Заказать Масштаб</a>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ЗАЯВКА (дубль формы сразу после тарифов) ============ -->
+  <section id="order-early" class="bg-cream py-16 lg:py-20 px-6 lg:px-14" aria-label="Заявка на лендинг">
+    <div class="max-w-6xl mx-auto">
+      <div class="rounded-[28px] bg-wine text-cream px-6 py-10 lg:px-12 lg:py-12 relative overflow-hidden shadow-xl shadow-wine/10">
+        <div class="absolute -top-24 right-0 w-[320px] h-[320px] rounded-full bg-gold/8 blur-3xl pointer-events-none" aria-hidden="true"></div>
+        <div class="relative grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-14 items-start">
+          <div data-reveal="fade">
+            <div class="inline-flex items-center gap-2 text-gold2 text-[11px] font-bold tracking-[0.22em] uppercase mb-3">
+              <span class="w-8 h-px bg-gold2"></span>
+              Заявка
+            </div>
+            <h2 class="font-display font-bold text-2xl lg:text-3xl leading-tight tracking-tight">
+              Уже выбрали пакет? Напишите здесь — та же форма, что и внизу страницы.
+            </h2>
+            <p class="mt-4 text-[14px] text-cream/55 leading-relaxed">Поля те же: имя, контакт, пакет и кратко о задаче. Ответим в рабочий день.</p>
+          </div>
+          <form class="form-box" onsubmit="handleFormSubmit(event)" data-reveal="fade">
+            <div class="form-head">
+              <h3 class="font-display text-xl font-bold">Расскажите о проекте</h3>
+              <p class="text-[13px] text-cream/50 mt-1">Заполняется за 40 секунд</p>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label>Ваше имя</label>
+                <input type="text" name="name" placeholder="Как к вам обращаться?" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label>Телефон или Email</label>
+                <input type="text" name="contact" placeholder="+420 … или email@…" required autocomplete="email">
+              </div>
+              <div class="field field-full">
+                <label>Какой пакет интересует?</label>
+                <div class="pkg-picker">
+                  <label class="pkg-opt"><input type="radio" name="pkg-early" value="maybe" checked><span>Ещё не решил(а)</span></label>
+                  <label class="pkg-opt"><input type="radio" name="pkg-early" value="basic"><span>Базовый · 200 €</span></label>
+                  <label class="pkg-opt"><input type="radio" name="pkg-early" value="growth"><span>Рост · 750 €</span></label>
+                  <label class="pkg-opt"><input type="radio" name="pkg-early" value="scale"><span>Масштаб · 1 500 €</span></label>
+                </div>
+              </div>
+              <div class="field field-full">
+                <label>О продукте и задаче</label>
+                <textarea name="message" rows="3" placeholder="Что продаёте? Есть ли уже лендинг? Откуда идёт трафик?"></textarea>
+              </div>
+              <button type="submit" class="form-submit magnetic" data-magnetic-strength="0.3">
+                <span>Отправить заявку</span>
+                <span class="arrow">→</span>
+              </button>
+              <div class="form-note">Нажимая «Отправить», вы соглашаетесь с обработкой данных.</div>
+              <p class="form-delivery-note"><strong>Куда уходит заявка.</strong> Пока без сервиса приёма — только подтверждение в браузере. Напрямую: <a href="mailto:landing@marketexpert.cz" class="text-gold2 underline hover:text-gold">landing@marketexpert.cz</a> / <a href="tel:+420705995770" class="text-gold2 underline hover:text-gold">+420 705 995 770</a>.</p>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -870,8 +931,12 @@
 
       <div class="space-y-3">
         <details class="faq-item" open>
+          <summary>Сколько стоят пакеты?<span class="faq-chev">+</span></summary>
+          <div class="faq-body">Актуальные цены: «Базовый» — 200&nbsp;€, «Рост» — 750&nbsp;€, «Масштаб» — 1&nbsp;500&nbsp;€. В чешских кронах — ориентировочно от 5&nbsp;000 / 18&nbsp;750 / 37&nbsp;500 CZK (курс может меняться). Итог в договоре — в евро или кронах, как удобнее.</div>
+        </details>
+        <details class="faq-item">
           <summary>Сколько времени занимает создание лендинга?<span class="faq-chev">+</span></summary>
-          <div class="faq-body">В пакете «Старт» — около 14 дней. «Рост» — 21 день. «Масштаб» — до 30 дней. Сроки зависят от скорости ваших согласований: если отвечаете быстро, делаем быстрее.</div>
+          <div class="faq-body">Ориентировочно: «Базовый» — около 5 рабочих дней, «Рост» — около 14 дней, «Масштаб» — до 25 дней. Точные сроки фиксируем в договоре; если вы быстро согласовываете материалы, часто укладываемся раньше.</div>
         </details>
         <details class="faq-item">
           <summary>Вы пишете тексты сами или нужно предоставить материалы?<span class="faq-chev">+</span></summary>
@@ -906,8 +971,7 @@
     <div class="cta-bg-photo" aria-hidden="true">
       <img src="https://images.unsplash.com/photo-1581431886211-6b932f8367f2?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy"/>
     </div>
-    <div class="absolute inset-0 opacity-[0.04] pointer-events-none bg-diag-lines"></div>
-    <div class="absolute -top-20 right-1/4 w-[500px] h-[500px] rounded-full bg-gold/10 blur-3xl"></div>
+    <div class="absolute -top-20 right-1/4 w-[500px] h-[500px] rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
 
     <div class="max-w-6xl mx-auto relative grid lg:grid-cols-[1fr_1fr] gap-14 items-center">
       <div data-reveal="fade">
@@ -945,34 +1009,46 @@
         <div class="form-grid">
           <div class="field">
             <label>Ваше имя</label>
-            <input type="text" placeholder="Как к вам обращаться?" required>
+            <input type="text" name="name" placeholder="Как к вам обращаться?" required autocomplete="name">
           </div>
           <div class="field">
             <label>Телефон или Email</label>
-            <input type="text" placeholder="+420 … или email@…" required>
+            <input type="text" name="contact" placeholder="+420 … или email@…" required autocomplete="email">
           </div>
           <div class="field field-full">
             <label>Какой пакет интересует?</label>
             <div class="pkg-picker">
-              <label class="pkg-opt"><input type="radio" name="pkg" value="maybe" checked><span>Ещё не решил(а)</span></label>
-              <label class="pkg-opt"><input type="radio" name="pkg" value="start"><span>Старт · 690 €</span></label>
-              <label class="pkg-opt"><input type="radio" name="pkg" value="growth"><span>Рост · 1 190 €</span></label>
-              <label class="pkg-opt"><input type="radio" name="pkg" value="scale"><span>Масштаб · 1 990 €</span></label>
+              <label class="pkg-opt"><input type="radio" name="pkg-order" value="maybe" checked><span>Ещё не решил(а)</span></label>
+              <label class="pkg-opt"><input type="radio" name="pkg-order" value="basic"><span>Базовый · 200 €</span></label>
+              <label class="pkg-opt"><input type="radio" name="pkg-order" value="growth"><span>Рост · 750 €</span></label>
+              <label class="pkg-opt"><input type="radio" name="pkg-order" value="scale"><span>Масштаб · 1 500 €</span></label>
             </div>
           </div>
           <div class="field field-full">
             <label>О продукте и задаче</label>
-            <textarea rows="3" placeholder="Что продаёте? Есть ли уже лендинг? Откуда идёт трафик?"></textarea>
+            <textarea name="message" rows="3" placeholder="Что продаёте? Есть ли уже лендинг? Откуда идёт трафик?"></textarea>
           </div>
-          <button type="submit" class="form-submit magnetic" id="formSubmit" data-magnetic-strength="0.3">
+          <button type="submit" class="form-submit magnetic" data-magnetic-strength="0.3">
             <span>Отправить заявку</span>
             <span class="arrow">→</span>
           </button>
           <div class="form-note">Нажимая «Отправить», вы соглашаетесь с обработкой данных. Это не значит «я согласен получать спам».</div>
+          <p class="form-delivery-note"><strong>Куда уходит заявка.</strong> Сейчас форма только показывает подтверждение в браузере — данные на почту и в CRM не отправляются, пока не подключён сервис приёма (Formspree, Getform, Web3Forms, форма в Tilda и т.п.) или свой бэкенд: тогда подставим <code class="text-cream/90">action</code> и способ отправки. Либо пишите напрямую: <a href="mailto:landing@marketexpert.cz" class="text-gold2 underline hover:text-gold">landing@marketexpert.cz</a> / <a href="tel:+420705995770" class="text-gold2 underline hover:text-gold">+420 705 995 770</a>.</p>
         </div>
       </form>
     </div>
   </section>
+
+  <!-- Cookie bar (fixed); см. script.js GA4_MEASUREMENT_ID -->
+  <div id="cookieBanner" class="cookie-banner" hidden role="dialog" aria-label="Файлы cookie">
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__text">Мы используем cookies и аналитику (GA4), чтобы понимать, как устроен трафик. <strong>Необходимые</strong> cookies нужны для работы сайта; <strong>аналитика</strong> включается только после согласия.</p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--primary" data-cookie-accept>Принять все</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie-reject>Только необходимые</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ============ FOOTER ============ -->
   <footer class="bg-wine2 text-cream/70 py-10 px-6 lg:px-14">
@@ -986,7 +1062,7 @@
       </div>
       <div class="flex items-center gap-7 text-[13px] flex-wrap">
         <a href="tel:+420705995770" class="hover:text-gold transition">+420 705 995 770</a>
-        <a href="mailto:hello@marketexpert.cz" class="hover:text-gold transition">hello@marketexpert.cz</a>
+        <a href="mailto:landing@marketexpert.cz" class="hover:text-gold transition">landing@marketexpert.cz</a>
         <a href="https://marketexpert.cz" target="_blank" rel="noopener" class="hover:text-gold transition">marketexpert.cz ↗</a>
       </div>
     </div>

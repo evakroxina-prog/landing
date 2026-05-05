@@ -7,9 +7,8 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Создание лендинг-пейдж — Market Expert Agency · Прага</title>
   <meta name="description" content="Создаём лендинги под ключ: анализ, текст, дизайн, вёрстка. Пакеты от 200 €. Прага." />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png" />
-  <link rel="apple-touch-icon" href="assets/logo.png" />
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/logo.svg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -210,38 +209,40 @@
         </p>
       </div>
 
-      <!-- Shared inputs -->
+      <!-- Вводные показатели -->
       <div class="bg-white rounded-2xl p-6 mb-4 border border-wine-dk/10 shadow-sm">
+        <div class="text-[10px] font-bold uppercase tracking-[0.22em] text-muted mb-4">Вводные показатели</div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
           <div class="calc-input-wrap">
-            <label>Посетителей в месяц</label>
+            <label>Трафик</label>
             <div class="calc-input">
-              <input type="number" id="cVisitors" value="1000" min="0" step="100">
-              <span class="calc-unit">чел</span>
+              <input type="number" id="cVisitors" value="1000" min="0" step="100" title="Посетителей в месяц">
+              <span class="calc-unit">чел/мес</span>
             </div>
           </div>
           <div class="calc-input-wrap">
-            <label>Закрытых сделок</label>
+            <label>Стоимость трафика (CPC)</label>
             <div class="calc-input">
-              <input type="number" id="cClose" value="30" min="0" max="100" step="1">
-              <span class="calc-unit">%</span>
+              <input type="number" id="cCpc" value="25" min="0" step="1" title="Цена за клик / переход">
+              <span class="calc-unit">Kč</span>
             </div>
           </div>
           <div class="calc-input-wrap">
             <label>Средний чек</label>
             <div class="calc-input">
-              <input type="number" id="cCheck" value="500" min="0" step="50">
-              <span class="calc-unit">€</span>
+              <input type="number" id="cCheck" value="12500" min="0" step="500">
+              <span class="calc-unit">Kč</span>
             </div>
           </div>
           <div class="calc-input-wrap">
-            <label>Реклама · CAC</label>
+            <label>Конверсия в продажу</label>
             <div class="calc-input">
-              <input type="number" id="cCac" value="12" min="0" step="1">
-              <span class="calc-unit">€/клик</span>
+              <input type="number" id="cSaleConv" value="30" min="0" max="100" step="1" title="% заявок, которые доходят до покупки">
+              <span class="calc-unit">% заявок</span>
             </div>
           </div>
         </div>
+        <p class="mt-4 text-[12px] text-cream/50 max-w-3xl leading-relaxed">Затраты на рекламу считаем как <b class="text-cream/70">трафик × CPC</b> — одинаковый бюджет в обоих сценариях; меняется только конверсия лендинга в заявку.</p>
       </div>
 
       <!-- VS grid -->
@@ -250,28 +251,44 @@
         <div class="calc-col calc-col-bad ornate-frame">
           <div class="calc-col-head">
             <span class="calc-dot calc-dot-bad"></span>
-            <span>Шаблонный лендинг</span>
+            <span>Сценарий А · Шаблонный лендинг</span>
           </div>
           <div class="calc-body">
             <div class="calc-row">
-              <span class="calc-label">Конверсия</span>
+              <span class="calc-label">Конверсия лендинга в заявку</span>
               <div class="calc-input calc-input-inline">
                 <input type="number" id="cBadConv" value="2" min="0" max="100" step="0.1">
                 <span class="calc-unit">%</span>
               </div>
             </div>
             <div class="calc-row">
-              <span class="calc-label">Заявок в месяц</span>
+              <span class="calc-label">Заявки (лиды)</span>
               <span class="calc-val" id="cBadLeads">20</span>
             </div>
             <div class="calc-row">
-              <span class="calc-label">Закрытых сделок</span>
-              <span class="calc-val" id="cBadDeals">6</span>
+              <span class="calc-label">Продажи</span>
+              <span class="calc-val" id="cBadSales">6</span>
             </div>
           </div>
           <div class="calc-total">
-            <div class="text-[10px] uppercase tracking-[0.2em] text-muted mb-1">Выручка в месяц</div>
-            <div class="font-display text-5xl lg:text-6xl font-bold text-danger leading-none"><span id="cBadRev">3 000</span><span class="text-[18px] text-muted ml-1 align-top">€</span></div>
+            <div class="calc-outcome-stack">
+              <div class="calc-outcome-line">
+                <span class="calc-outcome-k">Выручка</span>
+                <span class="calc-outcome-v"><span id="cBadRev">75 000</span> Kč</span>
+              </div>
+              <div class="calc-outcome-line">
+                <span class="calc-outcome-k">Затраты на рекламу</span>
+                <span class="calc-outcome-v"><span id="cBadAdSpend">25 000</span> Kč</span>
+              </div>
+              <div class="calc-outcome-line calc-outcome-line--net calc-outcome-line--bad">
+                <span class="calc-outcome-k">Чистая прибыль</span>
+                <span class="calc-outcome-v font-display text-2xl lg:text-3xl font-bold"><span id="cBadNet">50 000</span> Kč</span>
+              </div>
+              <div class="calc-outcome-line">
+                <span class="calc-outcome-k">CAC <span class="text-[10px] opacity-70 font-sans font-normal normal-case tracking-normal">(реклама / продажи)</span></span>
+                <span class="calc-outcome-v"><span id="cBadCac">4 167</span> Kč</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -280,9 +297,8 @@
           <div class="vs-letters">
             <span>V</span><span>S</span>
           </div>
-          <div class="vs-multiplier">
-            <div class="text-[9px] uppercase tracking-[0.2em] text-muted mb-1">Разница</div>
-            <div class="font-display font-bold text-5xl lg:text-6xl text-gold" id="cMultiplier">×6</div>
+          <div class="vs-multiplier vs-multiplier--hint">
+            <div class="text-[9px] uppercase tracking-[0.2em] text-muted">Все сметы — внизу</div>
           </div>
         </div>
 
@@ -290,39 +306,60 @@
         <div class="calc-col calc-col-good ornate-frame">
           <div class="calc-col-head">
             <span class="calc-dot calc-dot-good"></span>
-            <span>С правильной архитектурой</span>
+            <span>Сценарий Б · Правильная архитектура</span>
           </div>
           <div class="calc-body">
             <div class="calc-row">
-              <span class="calc-label">Конверсия</span>
+              <span class="calc-label">Конверсия лендинга в заявку</span>
               <div class="calc-input calc-input-inline">
                 <input type="number" id="cGoodConv" value="12" min="0" max="100" step="0.1">
                 <span class="calc-unit">%</span>
               </div>
             </div>
             <div class="calc-row">
-              <span class="calc-label">Заявок в месяц</span>
+              <span class="calc-label">Заявки (лиды)</span>
               <span class="calc-val" id="cGoodLeads">120</span>
             </div>
             <div class="calc-row">
-              <span class="calc-label">Закрытых сделок</span>
-              <span class="calc-val" id="cGoodDeals">36</span>
+              <span class="calc-label">Продажи</span>
+              <span class="calc-val" id="cGoodSales">36</span>
             </div>
           </div>
           <div class="calc-total">
-            <div class="text-[10px] uppercase tracking-[0.2em] text-muted mb-1">Выручка в месяц</div>
-            <div class="font-display text-5xl lg:text-6xl font-bold text-success leading-none"><span id="cGoodRev">18 000</span><span class="text-[18px] text-muted ml-1 align-top">€</span></div>
+            <div class="calc-outcome-stack">
+              <div class="calc-outcome-line">
+                <span class="calc-outcome-k">Выручка</span>
+                <span class="calc-outcome-v"><span id="cGoodRev">450 000</span> Kč</span>
+              </div>
+              <div class="calc-outcome-line">
+                <span class="calc-outcome-k">Затраты на рекламу</span>
+                <span class="calc-outcome-v"><span id="cGoodAdSpend">25 000</span> Kč</span>
+              </div>
+              <div class="calc-outcome-line calc-outcome-line--net calc-outcome-line--good">
+                <span class="calc-outcome-k">Чистая прибыль</span>
+                <span class="calc-outcome-v font-display text-2xl lg:text-3xl font-bold"><span id="cGoodNet">425 000</span> Kč</span>
+              </div>
+              <div class="calc-outcome-line">
+                <span class="calc-outcome-k">CAC <span class="text-[10px] opacity-70 font-sans font-normal normal-case tracking-normal">(реклама / продажи)</span></span>
+                <span class="calc-outcome-v"><span id="cGoodCac">694</span> Kč</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Delta callout -->
-      <div class="mt-8 flex items-center gap-3 flex-wrap" data-reveal="fade">
-        <span class="inline-flex items-center gap-2 bg-gold2 text-wine-dk px-4 py-2 rounded-full">
-          <span class="text-[10px] uppercase tracking-[0.2em] font-bold">Упущено в месяц</span>
-          <span class="font-display font-bold text-xl">+<span id="cDelta">15 000</span> €</span>
-        </span>
-        <span class="text-[13px] text-cream/65">Одинаковый бюджет на рекламу. Одинаковый продукт. Разница — <b class="text-cream">только в лендинге</b>.</span>
+      <!-- Итог сравнения -->
+      <div class="mt-8 flex flex-col gap-4" data-reveal="fade">
+        <div class="flex items-center gap-3 flex-wrap">
+          <span class="inline-flex items-center gap-2 bg-gold2 text-wine-dk px-4 py-2 rounded-full">
+            <span class="text-[10px] uppercase tracking-[0.2em] font-bold">Разница чистой прибыли / мес</span>
+            <span class="font-display font-bold text-xl">+<span id="cDeltaProfit">375 000</span> Kč</span>
+          </span>
+          <span class="inline-flex items-center gap-2 border border-gold2/40 text-cream px-4 py-2 rounded-full text-[13px]">
+            Кратность выручки: <b class="text-gold2 font-display text-lg" id="cMultiplier">×6</b>
+          </span>
+        </div>
+        <p class="text-[13px] text-cream/65 max-w-3xl leading-relaxed">Один и тот же трафик и ставка CPC — затраты на рекламу <b class="text-cream">одинаковые</b>. Меняется только доля посетителей, которые оставляют заявку; прибыль и CAC пересчитываются полностью.</p>
       </div>
     </div>
   </section>
@@ -472,10 +509,10 @@
             Примеры сайтов <em class="italic text-gold">с характером</em>
           </h2>
           <p class="mt-5 text-[15px] text-muted leading-relaxed max-w-md">
-            Три записи с экрана: динамика, крупная типографика, сочные визуальные ходы. Нажмите на превью — ролик откроется прямо здесь. Если видите <strong class="text-wine-dk">ошибку 153</strong>: откройте страницу через локальный сервер (не двойной клик по файлу) или по ссылке ниже на YouTube — у встраиваемого плеера должны уходить корректные заголовки и не быть режима <code class="text-gold font-semibold">file://</code>.
+            Три коротких скринкаста: динамика страницы, типографика и визуальные акценты. Нажмите на превью — ролик откроется на месте. Полные версии — по ссылкам на YouTube ниже.
           </p>
           <p class="mt-4 text-[13px] text-muted/90">
-            Исходные ролики на YouTube:
+            Ролики на YouTube:
             <a href="https://youtu.be/GgkmkUC0g9U" target="_blank" rel="noopener noreferrer" class="text-gold font-semibold hover:underline">ролик 1</a>
             ·
             <a href="https://youtu.be/PMs8f84tNKM" target="_blank" rel="noopener noreferrer" class="text-gold font-semibold hover:underline">ролик 2</a>
@@ -646,8 +683,7 @@
             <li class="dim"><span>—</span> Квиз или мини-анкета</li>
             <li class="dim"><span>—</span> A/B тест</li>
           </ul>
-          <p class="price-blurb">Цена снижена до 200&nbsp;€ (было 690&nbsp;€). Срок сокращён до ~5 дней (было 14).</p>
-          <a href="#order-early" class="price-cta magnetic" data-magnetic-strength="0.25">Заказать Базовый</a>
+          <a href="#order" class="price-cta magnetic" data-magnetic-strength="0.25">Заказать Базовый</a>
         </article>
 
         <!-- FEATURED — РОСТ -->
@@ -670,8 +706,7 @@
             <li><span>✓</span> 2 раунда правок</li>
             <li><span>✓</span> Рекомендации по рекламе</li>
           </ul>
-          <p class="price-blurb light price-blurb--light">Цена оптимизирована до 750&nbsp;€ (было 1&nbsp;190&nbsp;€). Срок ускорен до ~14 дней (было 21).</p>
-          <a href="#order-early" class="price-cta price-cta-gold magnetic" data-magnetic-strength="0.3">Заказать Рост</a>
+          <a href="#order" class="price-cta price-cta-gold magnetic" data-magnetic-strength="0.3">Заказать Рост</a>
         </article>
 
         <!-- МАСШТАБ -->
@@ -693,65 +728,8 @@
             <li><span>✓</span> Месяц поддержки после запуска</li>
             <li><span>✓</span> Настройка рекламы под связку</li>
           </ul>
-          <p class="price-blurb">Цена стала конкурентнее — 1&nbsp;500&nbsp;€ (было 1&nbsp;990&nbsp;€). Срок оптимизирован до ~25 дней (было 30).</p>
-          <a href="#order-early" class="price-cta magnetic" data-magnetic-strength="0.25">Заказать Масштаб</a>
+          <a href="#order" class="price-cta magnetic" data-magnetic-strength="0.25">Заказать Масштаб</a>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ ЗАЯВКА (дубль формы сразу после тарифов) ============ -->
-  <section id="order-early" class="bg-cream py-16 lg:py-20 px-6 lg:px-14" aria-label="Заявка на лендинг">
-    <div class="max-w-6xl mx-auto">
-      <div class="rounded-[28px] bg-wine text-cream px-6 py-10 lg:px-12 lg:py-12 relative overflow-hidden shadow-xl shadow-wine/10">
-        <div class="absolute -top-24 right-0 w-[320px] h-[320px] rounded-full bg-gold/8 blur-3xl pointer-events-none" aria-hidden="true"></div>
-        <div class="relative grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-14 items-start">
-          <div data-reveal="fade">
-            <div class="inline-flex items-center gap-2 text-gold2 text-[11px] font-bold tracking-[0.22em] uppercase mb-3">
-              <span class="w-8 h-px bg-gold2"></span>
-              Заявка
-            </div>
-            <h2 class="font-display font-bold text-2xl lg:text-3xl leading-tight tracking-tight">
-              Уже выбрали пакет? Напишите здесь — та же форма, что и внизу страницы.
-            </h2>
-            <p class="mt-4 text-[14px] text-cream/55 leading-relaxed">Поля те же: имя, контакт, пакет и кратко о задаче. Ответим в рабочий день.</p>
-          </div>
-          <form class="form-box" onsubmit="handleFormSubmit(event)" data-reveal="fade">
-            <div class="form-head">
-              <h3 class="font-display text-xl font-bold">Расскажите о проекте</h3>
-              <p class="text-[13px] text-cream/50 mt-1">Заполняется за 40 секунд</p>
-            </div>
-            <div class="form-grid">
-              <div class="field">
-                <label>Ваше имя</label>
-                <input type="text" name="name" placeholder="Как к вам обращаться?" required autocomplete="name">
-              </div>
-              <div class="field">
-                <label>Телефон или Email</label>
-                <input type="text" name="contact" placeholder="+420 … или email@…" required autocomplete="email">
-              </div>
-              <div class="field field-full">
-                <label>Какой пакет интересует?</label>
-                <div class="pkg-picker">
-                  <label class="pkg-opt"><input type="radio" name="pkg-early" value="maybe" checked><span>Ещё не решил(а)</span></label>
-                  <label class="pkg-opt"><input type="radio" name="pkg-early" value="basic"><span>Базовый · 200 €</span></label>
-                  <label class="pkg-opt"><input type="radio" name="pkg-early" value="growth"><span>Рост · 750 €</span></label>
-                  <label class="pkg-opt"><input type="radio" name="pkg-early" value="scale"><span>Масштаб · 1 500 €</span></label>
-                </div>
-              </div>
-              <div class="field field-full">
-                <label>О продукте и задаче</label>
-                <textarea name="message" rows="3" placeholder="Что продаёте? Есть ли уже лендинг? Откуда идёт трафик?"></textarea>
-              </div>
-              <button type="submit" class="form-submit magnetic" data-magnetic-strength="0.3">
-                <span>Отправить заявку</span>
-                <span class="arrow">→</span>
-              </button>
-              <div class="form-note">Нажимая «Отправить», вы соглашаетесь с обработкой данных.</div>
-              <p class="form-delivery-note"><strong>Куда уходит заявка.</strong> Пока без сервиса приёма — только подтверждение в браузере. Напрямую: <a href="mailto:landing@marketexpert.cz" class="text-gold2 underline hover:text-gold">landing@marketexpert.cz</a> / <a href="tel:+420705995770" class="text-gold2 underline hover:text-gold">+420 705 995 770</a>.</p>
-            </div>
-          </form>
-        </div>
       </div>
     </div>
   </section>
@@ -1001,7 +979,10 @@
         </div>
       </div>
 
-      <form class="form-box" onsubmit="handleFormSubmit(event)" data-reveal="fade">
+      <!-- Formspree: в action подставьте свой endpoint вида https://formspree.io/f/xxxxxx (кабинет → Form → Integration) -->
+      <form class="form-box" action="https://formspree.io/f/xpqbdkav" method="POST" onsubmit="handleFormSubmit(event)" data-reveal="fade">
+        <input type="hidden" name="_subject" value="Заявка с лендинга MarketExpert">
+        <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-head">
           <h3 class="font-display text-2xl font-bold">Расскажите о проекте</h3>
           <p class="text-[13px] text-cream/50 mt-1">Заполняется за 40 секунд</p>
@@ -1033,14 +1014,13 @@
             <span class="arrow">→</span>
           </button>
           <div class="form-note">Нажимая «Отправить», вы соглашаетесь с обработкой данных. Это не значит «я согласен получать спам».</div>
-          <p class="form-delivery-note"><strong>Куда уходит заявка.</strong> Сейчас форма только показывает подтверждение в браузере — данные на почту и в CRM не отправляются, пока не подключён сервис приёма (Formspree, Getform, Web3Forms, форма в Tilda и т.п.) или свой бэкенд: тогда подставим <code class="text-cream/90">action</code> и способ отправки. Либо пишите напрямую: <a href="mailto:landing@marketexpert.cz" class="text-gold2 underline hover:text-gold">landing@marketexpert.cz</a> / <a href="tel:+420705995770" class="text-gold2 underline hover:text-gold">+420 705 995 770</a>.</p>
         </div>
       </form>
     </div>
   </section>
 
   <!-- Cookie bar (fixed); см. script.js GA4_MEASUREMENT_ID -->
-  <div id="cookieBanner" class="cookie-banner" hidden role="dialog" aria-label="Файлы cookie">
+  <div id="cookieBanner" class="cookie-banner cookie-banner--closed" role="dialog" aria-label="Файлы cookie" aria-hidden="true">
     <div class="cookie-banner__inner">
       <p class="cookie-banner__text">Мы используем cookies и аналитику (GA4), чтобы понимать, как устроен трафик. <strong>Необходимые</strong> cookies нужны для работы сайта; <strong>аналитика</strong> включается только после согласия.</p>
       <div class="cookie-banner__actions">
@@ -1054,7 +1034,7 @@
   <footer class="bg-wine2 text-cream/70 py-10 px-6 lg:px-14">
     <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-6">
       <div class="flex items-center gap-3">
-        <img src="assets/logo.png" alt="M:E agency" class="w-10 h-10 object-contain" />
+        <img src="assets/logo.svg" alt="M:E agency" class="w-10 h-10 object-contain" width="40" height="40" />
         <div>
           <div class="font-display font-semibold text-[18px] text-cream">M:E <span class="text-gold2 font-normal italic">agency</span></div>
           <div class="text-[11px] text-cream/40 mt-0.5">© 2026 · Прага, Чехия · Создание лендингов</div>

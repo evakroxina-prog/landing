@@ -402,7 +402,6 @@ html { scroll-behavior: smooth; }
   background: rgba(0, 0, 0, 0.35);
   border-top-color: rgba(245, 166, 35, 0.2);
 }
-.math-sec .calc-total > div:first-child { color: rgba(247, 242, 234, 0.5); }
 .math-sec .calc-input-inline {
   background: rgba(255, 255, 255, 0.06);
 }
@@ -532,12 +531,62 @@ html { scroll-behavior: smooth; }
 }
 .calc-val.bump { color: #d4920a; }
 
-.calc-total {
-  background: #faf8f4;
-  margin: 18px -28px -28px;
-  padding: 22px 28px;
-  border-radius: 0 0 20px 20px;
+/* Outcome stack under scenarios */
+.calc-outcome-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.calc-outcome-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(232, 224, 208, 0.7);
+  font-size: 13px;
+}
+.calc-outcome-line:last-child {
+  border-bottom: none;
+}
+.calc-outcome-k {
+  color: #6b5d54;
+  font-weight: 600;
+  flex-shrink: 1;
+}
+.calc-outcome-v {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: #1e1218;
+  text-align: right;
+}
+.calc-outcome-line--net {
+  border-bottom: none;
+  padding-top: 14px;
+  margin-top: 4px;
   border-top: 2px dashed #e8e0d0;
+}
+.calc-outcome-line--net .calc-outcome-k {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.calc-outcome-line--bad .calc-outcome-v { color: #b4342c; }
+.calc-outcome-line--good .calc-outcome-v { color: #1f8a50; }
+.calc-outcome-line--bad .calc-outcome-v.is-negative { color: #8b2944; }
+.calc-outcome-line--good .calc-outcome-v.is-negative { color: #b4342c; }
+
+.math-sec .calc-outcome-line { border-bottom-color: rgba(245, 166, 35, 0.15); }
+.math-sec .calc-outcome-k { color: rgba(247, 242, 234, 0.55); }
+.math-sec .calc-outcome-v { color: #faf8f4; }
+.math-sec .calc-outcome-line--net { border-top-color: rgba(245, 166, 35, 0.25); }
+.math-sec .calc-outcome-line--bad .calc-outcome-v { color: #ff8a80; }
+.math-sec .calc-outcome-line--good .calc-outcome-v { color: #7dcea7; }
+.math-sec .calc-outcome-line--bad .calc-outcome-v.is-negative { color: #ff6b6b; }
+.math-sec .calc-outcome-line--good .calc-outcome-v.is-negative { color: #ffb4a8; }
+.vs-multiplier--hint {
+  opacity: 0.85;
 }
 
 /* VS separator */
@@ -1200,6 +1249,7 @@ html { scroll-behavior: smooth; }
   padding: 36px;
   backdrop-filter: blur(10px);
   position: relative;
+  z-index: 3;
 }
 .form-box::before {
   content: '';
@@ -1682,4 +1732,83 @@ html { scroll-behavior: smooth; }
   width: 18px;
   height: 18px;
   opacity: 0.9;
+}
+
+/* Cookie consent bar (как на marketexpert.cz: #4e1429, акцент #E8941A, Open Sans) */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  padding: 20px 32px;
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  background: #4e1429;
+  color: #fff;
+  font-family: 'Open Sans', system-ui, sans-serif;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.25);
+}
+.cookie-banner--closed {
+  display: none !important;
+}
+.cookie-banner__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+@media (min-width: 768px) {
+  .cookie-banner__inner {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+.cookie-banner__text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #fff;
+  margin: 0;
+  max-width: 700px;
+}
+.cookie-banner__link {
+  color: #e8941a;
+  text-decoration: underline;
+}
+.cookie-banner__link:hover {
+  color: #f5a623;
+}
+.cookie-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.cookie-banner__btn {
+  font-family: 'Open Sans', system-ui, sans-serif;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.cookie-banner__btn--primary {
+  background: #e8941a;
+  color: #fff;
+  font-weight: 700;
+}
+.cookie-banner__btn--primary:hover {
+  background: #d98410;
+}
+.cookie-banner__btn--ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.cookie-banner__btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.65);
 }

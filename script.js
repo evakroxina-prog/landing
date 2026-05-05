@@ -2,6 +2,93 @@
    07-marketexpert-agency — script
    ========================================================= */
 
+/** ID из <head>: window.__GA4_MEASUREMENT_ID__; иначе поток по умолчанию. */
+const GA4_MEASUREMENT_ID = (() => {
+  const raw =
+    typeof window !== 'undefined' && window.__GA4_MEASUREMENT_ID__
+      ? String(window.__GA4_MEASUREMENT_ID__).trim()
+      : '';
+  if (raw && /^G-[A-Z0-9]+$/i.test(raw)) return raw;
+  return 'G-SPKHXMCQGM';
+})();
+
+const COOKIE_CONSENT_KEY = 'cookie_consent';
+
+function isValidGa4Id(id) {
+  return typeof id === 'string' && /^G-[A-Z0-9]+$/i.test(id);
+}
+
+function loadGA4() {
+  if (!isValidGa4Id(GA4_MEASUREMENT_ID) || window.__ga4Loaded) return;
+  window.__ga4Loaded = true;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag() { window.dataLayer.push(arguments); };
+  gtag('js', new Date());
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA4_MEASUREMENT_ID);
+  document.head.appendChild(s);
+  s.onload = () => {
+    gtag('config', GA4_MEASUREMENT_ID);
+  };
+}
+
+/** Совместимость с другим лендингом marketexpert.cz */
+function loadGA() {
+  loadGA4();
+}
+window.loadGA = loadGA;
+window.loadGA4 = loadGA4;
+
+function initCookieBanner() {
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+  let stored = null;
+  try {
+    stored = localStorage.getItem(COOKIE_CONSENT_KEY);
+  } catch (_) {
+    stored = null;
+  }
+  if (stored === 'yes') {
+    loadGA4();
+    banner.remove();
+    return;
+  }
+  if (stored === 'no') {
+    banner.remove();
+    return;
+  }
+  banner.classList.remove('cookie-banner--closed');
+  banner.removeAttribute('aria-hidden');
+  const accept = banner.querySelector('[data-cookie-accept]');
+  const reject = banner.querySelector('[data-cookie-reject]');
+  const close = () => {
+    try {
+      banner.remove();
+    } catch (_) {
+      banner.classList.add('cookie-banner--closed');
+      banner.setAttribute('aria-hidden', 'true');
+    }
+  };
+  if (accept) {
+    accept.addEventListener('click', () => {
+      try {
+        localStorage.setItem(COOKIE_CONSENT_KEY, 'yes');
+      } catch (_) {}
+      loadGA4();
+      close();
+    });
+  }
+  if (reject) {
+    reject.addEventListener('click', () => {
+      try {
+        localStorage.setItem(COOKIE_CONSENT_KEY, 'no');
+      } catch (_) {}
+      close();
+    });
+  }
+}
+
 /* ---------- NAV scrolled ---------- */
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
@@ -56,46 +143,66 @@ document.querySelectorAll('.counter').forEach((el) => counterObs.observe(el));
 /* ---------- INTERACTIVE CALCULATOR ---------- */
 (function initCalc() {
   const visitors = document.getElementById('cVisitors');
-  const close    = document.getElementById('cClose');
-  const check    = document.getElementById('cCheck');
-  const cac      = document.getElementById('cCac');
-  const badConv  = document.getElementById('cBadConv');
+  const cpc = document.getElementById('cCpc');
+  const check = document.getElementById('cCheck');
+  const saleConv = document.getElementById('cSaleConv');
+  const badConv = document.getElementById('cBadConv');
   const goodConv = document.getElementById('cGoodConv');
 
   const out = {
-    badLeads:  document.getElementById('cBadLeads'),
-    badDeals:  document.getElementById('cBadDeals'),
-    badRev:    document.getElementById('cBadRev'),
+    badLeads: document.getElementById('cBadLeads'),
+    badSales: document.getElementById('cBadSales'),
+    badRev: document.getElementById('cBadRev'),
+    badAdSpend: document.getElementById('cBadAdSpend'),
+    badNet: document.getElementById('cBadNet'),
+    badCac: document.getElementById('cBadCac'),
     goodLeads: document.getElementById('cGoodLeads'),
-    goodDeals: document.getElementById('cGoodDeals'),
-    goodRev:   document.getElementById('cGoodRev'),
-    delta:     document.getElementById('cDelta'),
-    mult:      document.getElementById('cMultiplier'),
+    goodSales: document.getElementById('cGoodSales'),
+    goodRev: document.getElementById('cGoodRev'),
+    goodAdSpend: document.getElementById('cGoodAdSpend'),
+    goodNet: document.getElementById('cGoodNet'),
+    goodCac: document.getElementById('cGoodCac'),
+    deltaProfit: document.getElementById('cDeltaProfit'),
+    mult: document.getElementById('cMultiplier'),
   };
 
-  if (!visitors) return;
+  if (!visitors || !cpc) return;
 
-  const fmt = (n) => Math.round(n).toLocaleString('ru-RU');
+  const fmt = (n) => Math.round(n).toLocaleString('cs-CZ');
+
+  function fmtCac(n) {
+    if (!Number.isFinite(n) || n <= 0) return '—';
+    const r = n >= 100 ? Math.round(n) : Math.round(n * 10) / 10;
+    return r.toLocaleString('cs-CZ');
+  }
 
   const prev = {
-    badLeads: 20, badDeals: 6, badRev: 3000,
-    goodLeads: 120, goodDeals: 36, goodRev: 18000,
-    delta: 15000, mult: 6,
+    badLeads: 20,
+    badSales: 6,
+    badRev: 75000,
+    badAdSpend: 25000,
+    badNet: 50000,
+    goodLeads: 120,
+    goodSales: 36,
+    goodRev: 450000,
+    goodAdSpend: 25000,
+    goodNet: 425000,
+    deltaProfit: 375000,
+    mult: 6,
   };
 
-  function animateNumber(el, from, to, key, multi = false) {
+  function animateNumber(el, from, to, key) {
+    if (!el) return;
     const duration = 600;
     const start = performance.now();
     const step = (now) => {
       const p = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 3);
       const v = from + (to - from) * eased;
-      if (multi) el.textContent = '×' + (v < 10 ? v.toFixed(1).replace('.', ',') : Math.round(v));
-      else el.textContent = fmt(v);
+      el.textContent = fmt(v);
       if (p < 1) requestAnimationFrame(step);
       else {
-        if (multi) el.textContent = '×' + (to < 10 ? to.toFixed(1).replace('.', ',') : Math.round(to));
-        else el.textContent = fmt(to);
+        el.textContent = fmt(to);
         prev[key] = to;
       }
     };
@@ -104,35 +211,95 @@ document.querySelectorAll('.counter').forEach((el) => counterObs.observe(el));
     requestAnimationFrame(step);
   }
 
-  function recompute() {
-    const v = +visitors.value || 0;
-    const cl = +close.value || 0;
-    const ch = +check.value || 0;
-    const bc = +badConv.value || 0;
-    const gc = +goodConv.value || 0;
-
-    const badLeads  = v * bc / 100;
-    const badDeals  = badLeads * cl / 100;
-    const badRev    = badDeals * ch;
-    const goodLeads = v * gc / 100;
-    const goodDeals = goodLeads * cl / 100;
-    const goodRev   = goodDeals * ch;
-    const delta     = goodRev - badRev;
-    const mult      = badRev > 0 ? goodRev / badRev : goodRev > 0 ? 99 : 1;
-
-    animateNumber(out.badLeads,  prev.badLeads,  badLeads,  'badLeads');
-    animateNumber(out.badDeals,  prev.badDeals,  badDeals,  'badDeals');
-    animateNumber(out.badRev,    prev.badRev,    badRev,    'badRev');
-    animateNumber(out.goodLeads, prev.goodLeads, goodLeads, 'goodLeads');
-    animateNumber(out.goodDeals, prev.goodDeals, goodDeals, 'goodDeals');
-    animateNumber(out.goodRev,   prev.goodRev,   goodRev,   'goodRev');
-    animateNumber(out.delta,     prev.delta,     Math.max(0, delta), 'delta');
-    animateNumber(out.mult,      prev.mult,      mult,      'mult', true);
+  function animateMult(el, from, to, key) {
+    if (!el) return;
+    const duration = 600;
+    const start = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const v = from + (to - from) * eased;
+      el.textContent = '×' + (v < 10 ? v.toFixed(1).replace('.', ',') : Math.round(v));
+      if (p < 1) requestAnimationFrame(step);
+      else {
+        el.textContent = '×' + (to < 10 ? to.toFixed(1).replace('.', ',') : Math.round(to));
+        prev[key] = to;
+      }
+    };
+    requestAnimationFrame(step);
   }
 
-  [visitors, close, check, cac, badConv, goodConv].forEach((el) => {
-    el.addEventListener('input', recompute);
+  function setNetStyle(elNet, net) {
+    if (!elNet) return;
+    elNet.classList.toggle('is-negative', net < 0);
+  }
+
+  function recompute() {
+    const v = +visitors.value || 0;
+    const cpcVal = +cpc.value || 0;
+    const ch = +check.value || 0;
+    const sc = (+saleConv.value || 0) / 100;
+    const bc = (+badConv.value || 0) / 100;
+    const gc = (+goodConv.value || 0) / 100;
+
+    const adSpend = v * cpcVal;
+
+    const badLeads = v * bc;
+    const badSalesExact = badLeads * sc;
+    const badRev = badSalesExact * ch;
+    const badNet = badRev - adSpend;
+    const badCac = badSalesExact > 0 ? adSpend / badSalesExact : NaN;
+
+    const goodLeads = v * gc;
+    const goodSalesExact = goodLeads * sc;
+    const goodRev = goodSalesExact * ch;
+    const goodNet = goodRev - adSpend;
+    const goodCac = goodSalesExact > 0 ? adSpend / goodSalesExact : NaN;
+
+    const deltaProfit = goodNet - badNet;
+    const mult = badRev > 0 ? goodRev / badRev : goodRev > 0 ? 99 : 1;
+
+    const badLeadsDisp = Math.round(badLeads);
+    const badSalesDisp = Math.round(badSalesExact);
+    const goodLeadsDisp = Math.round(goodLeads);
+    const goodSalesDisp = Math.round(goodSalesExact);
+
+    animateNumber(out.badLeads, prev.badLeads, badLeadsDisp, 'badLeads');
+    animateNumber(out.badSales, prev.badSales, badSalesDisp, 'badSales');
+    animateNumber(out.badRev, prev.badRev, badRev, 'badRev');
+    animateNumber(out.badNet, prev.badNet, badNet, 'badNet');
+    animateNumber(out.goodLeads, prev.goodLeads, goodLeadsDisp, 'goodLeads');
+    animateNumber(out.goodSales, prev.goodSales, goodSalesDisp, 'goodSales');
+    animateNumber(out.goodRev, prev.goodRev, goodRev, 'goodRev');
+    animateNumber(out.goodNet, prev.goodNet, goodNet, 'goodNet');
+    animateNumber(out.deltaProfit, prev.deltaProfit, deltaProfit, 'deltaProfit');
+
+    if (out.badAdSpend) out.badAdSpend.textContent = fmt(adSpend);
+    if (out.goodAdSpend) out.goodAdSpend.textContent = fmt(adSpend);
+    prev.badAdSpend = adSpend;
+    prev.goodAdSpend = adSpend;
+
+    if (badRev <= 0 && goodRev > 0) {
+      if (out.mult) out.mult.textContent = '∞';
+      prev.mult = mult;
+    } else if (badRev <= 0 && goodRev <= 0) {
+      if (out.mult) out.mult.textContent = '—';
+      prev.mult = 1;
+    } else {
+      animateMult(out.mult, prev.mult, mult, 'mult');
+    }
+
+    if (out.badCac) out.badCac.textContent = fmtCac(badCac);
+    if (out.goodCac) out.goodCac.textContent = fmtCac(goodCac);
+
+    setNetStyle(out.badNet, badNet);
+    setNetStyle(out.goodNet, goodNet);
+  }
+
+  [visitors, cpc, check, saleConv, badConv, goodConv].forEach((el) => {
+    if (el) el.addEventListener('input', recompute);
   });
+  recompute();
 })();
 
 /* ---------- SHOWREEL — load YouTube iframe on play ----------
@@ -234,7 +401,10 @@ document.querySelectorAll('.counter').forEach((el) => counterObs.observe(el));
 
 /* ---------- MAGNETIC BUTTONS ---------- */
 document.querySelectorAll('.magnetic').forEach((el) => {
-  const strength = parseFloat(el.dataset.magneticStrength || '0.3');
+  const rawAttr = el.getAttribute('data-magnetic-strength');
+  const strength = parseFloat(
+    rawAttr != null && rawAttr !== '' ? rawAttr : el.dataset.magneticStrength || '0.3'
+  );
   el.addEventListener('mousemove', (e) => {
     const r = el.getBoundingClientRect();
     const x = (e.clientX - (r.left + r.width / 2)) * strength;
@@ -257,15 +427,67 @@ document.querySelectorAll('.faq-item').forEach((item) => {
   });
 });
 
-/* ---------- FORM submit ---------- */
-function handleFormSubmit(e) {
+/* ---------- FORM submit (Formspree) ---------- */
+async function handleFormSubmit(e) {
   e.preventDefault();
-  const btn = document.getElementById('formSubmit');
-  btn.innerHTML = '<span>✓ Заявка отправлена</span>';
-  btn.classList.add('is-submitted');
+  const form = e.target;
+  if (!(form instanceof HTMLFormElement) || !form.action) return;
+  const btn = form.querySelector('.form-submit');
+  if (!btn || btn.disabled) return;
+
+  const originalHTML = btn.innerHTML;
   btn.disabled = true;
+  btn.innerHTML = '<span>Отправка…</span>';
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.ok) {
+      btn.innerHTML = '<span>✓ Заявка отправлена</span>';
+      btn.classList.add('is-submitted');
+      form.reset();
+      return;
+    }
+    let msg = 'Не удалось отправить заявку.';
+    if (data.error) {
+      msg = typeof data.error === 'string' ? data.error : data.error.message || msg;
+    } else if (Array.isArray(data.errors)) {
+      const parts = data.errors.map((x) => (x && x.message) || '').filter(Boolean);
+      if (parts.length) msg = parts.join(' ');
+    }
+    btn.innerHTML = originalHTML;
+    btn.disabled = false;
+    alert(msg);
+  } catch {
+    btn.innerHTML = originalHTML;
+    btn.disabled = false;
+    alert('Ошибка сети. Попробуйте позже или напишите напрямую на email.');
+  }
 }
 window.handleFormSubmit = handleFormSubmit;
+
+function initLeadForm() {
+  const form = document.getElementById('leadForm');
+  if (form) {
+    form.addEventListener('submit', handleFormSubmit);
+  }
+}
+
+function runWhenDomReady(fn) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fn, { once: true });
+  } else {
+    fn();
+  }
+}
+runWhenDomReady(() => {
+  initLeadForm();
+  initCookieBanner();
+});
 
 /* ---------- SAFETY NET ---------- */
 window.addEventListener('load', () => {

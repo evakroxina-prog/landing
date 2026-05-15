@@ -188,7 +188,8 @@ document.querySelectorAll('.counter').forEach((el) => counterObs.observe(el));
     goodAdSpend: 25000,
     goodNet: 425000,
     deltaProfit: 375000,
-    mult: 6,
+    /** Кратность чистой прибыли (Б/А), не выручки */
+    mult: 8.5,
   };
 
   function animateNumber(el, from, to, key) {
@@ -257,7 +258,16 @@ document.querySelectorAll('.counter').forEach((el) => counterObs.observe(el));
     const goodCac = goodSalesExact > 0 ? adSpend / goodSalesExact : NaN;
 
     const deltaProfit = goodNet - badNet;
-    const mult = badRev > 0 ? goodRev / badRev : goodRev > 0 ? 99 : 1;
+    /** Кратность чистой прибыли (Б/А): реагирует на CPC, чек и трафик; отношение выручек = только goodConv/badConv. */
+    let multProfit = NaN;
+    let multDisplayKind = 'finite';
+    if (badNet > 0 && goodNet > 0) {
+      multProfit = goodNet / badNet;
+    } else if (badNet <= 0 && goodNet > 0) {
+      multDisplayKind = 'infinity';
+    } else {
+      multDisplayKind = 'nan';
+    }
 
     const badLeadsDisp = Math.round(badLeads);
     const badSalesDisp = Math.round(badSalesExact);
@@ -279,14 +289,14 @@ document.querySelectorAll('.counter').forEach((el) => counterObs.observe(el));
     prev.badAdSpend = adSpend;
     prev.goodAdSpend = adSpend;
 
-    if (badRev <= 0 && goodRev > 0) {
-      if (out.mult) out.mult.textContent = '∞';
-      prev.mult = mult;
-    } else if (badRev <= 0 && goodRev <= 0) {
-      if (out.mult) out.mult.textContent = '—';
+    if (multDisplayKind === 'infinity' && out.mult) {
+      out.mult.textContent = '∞';
+      prev.mult = 99;
+    } else if (multDisplayKind === 'nan' && out.mult) {
+      out.mult.textContent = '—';
       prev.mult = 1;
-    } else {
-      animateMult(out.mult, prev.mult, mult, 'mult');
+    } else if (multDisplayKind === 'finite') {
+      animateMult(out.mult, prev.mult, multProfit, 'mult');
     }
 
     if (out.badCac) out.badCac.textContent = fmtCac(badCac);
@@ -294,6 +304,101 @@ document.querySelectorAll('.counter').forEach((el) => counterObs.observe(el));
 
     setNetStyle(out.badNet, badNet);
     setNetStyle(out.goodNet, goodNet);
+
+    syncCalcTeaser(deltaProfit, multDisplayKind, multProfit);
+  }
+
+  const shell = document.getElementById('calc_shell');
+  const panel = document.getElementById('calc_panel_inner');
+  const teaser = document.getElementById('calc_teaser');
+  const toggleOpen = document.getElementById('calc_teaser_toggle');
+  const collapseTop = document.getElementById('calc_panel_collapse_top');
+  const collapseBottom = document.getElementById('calc_panel_collapse_bottom');
+
+  const teaserProfit = document.getElementById('calcTeaserProfit');
+  const teaserMultEl = document.getElementById('calcTeaserMult');
+
+  function formatTeaserMult(multDisplayKind, multProfit) {
+    if (!teaserMultEl) return '';
+    if (multDisplayKind === 'infinity') return '∞';
+    if (multDisplayKind === 'nan') return '—';
+    if (!Number.isFinite(multProfit)) return '—';
+    return multProfit < 10
+      ? '×' + multProfit.toFixed(1).replace('.', ',')
+      : '×' + Math.round(multProfit);
+  }
+
+  function syncCalcTeaser(deltaProfit, multDisplayKind, multProfit) {
+    if (teaserProfit) {
+      const sign = deltaProfit >= 0 ? '+' : '−';
+      teaserProfit.textContent = `${sign}${fmt(Math.abs(deltaProfit))} Kč`;
+    }
+    if (teaserMultEl) {
+      teaserMultEl.textContent = formatTeaserMult(multDisplayKind, multProfit);
+    }
+  }
+
+  function setCalcExpanded(expanded, opts = {}) {
+    const persist = opts.persist !== false;
+    const scrollSmooth = !!opts.scrollSmooth;
+    const focusFirst = !!opts.focusFirst;
+    if (!shell || !panel || !teaser || !toggleOpen) return;
+
+    if (expanded) {
+      shell.classList.add('math-calc-shell--expanded');
+      panel.hidden = false;
+      panel.removeAttribute('aria-hidden');
+      teaser.hidden = true;
+      toggleOpen.setAttribute('aria-expanded', 'true');
+      if (persist) {
+        try {
+          localStorage.setItem('me_calc_math_expanded', '1');
+        } catch (_) {}
+      }
+      if (scrollSmooth) {
+        requestAnimationFrame(() => {
+          collapseTop?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      }
+      if (focusFirst && visitors && typeof visitors.focus === 'function') {
+        visitors.focus({ preventScroll: true });
+      }
+    } else {
+      shell.classList.remove('math-calc-shell--expanded');
+      panel.hidden = true;
+      panel.setAttribute('aria-hidden', 'true');
+      teaser.hidden = false;
+      toggleOpen.setAttribute('aria-expanded', 'false');
+      if (persist) {
+        try {
+          localStorage.setItem('me_calc_math_expanded', '0');
+        } catch (_) {}
+      }
+      if (!opts.skipRevealScroll && scrollSmooth) {
+        requestAnimationFrame(() =>
+          teaser.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+        );
+      }
+    }
+  }
+
+  if (shell && panel && teaser && toggleOpen) {
+    let startExpanded = false;
+    try {
+      startExpanded = localStorage.getItem('me_calc_math_expanded') === '1';
+    } catch (_) {}
+    setCalcExpanded(startExpanded, { persist: false, scrollSmooth: false });
+
+    toggleOpen.addEventListener('click', () => {
+      setCalcExpanded(true, { scrollSmooth: true, focusFirst: true });
+    });
+    [collapseTop, collapseBottom].forEach((btn) => {
+      if (btn) {
+        btn.addEventListener('click', () => {
+          setCalcExpanded(false, { scrollSmooth: true, skipRevealScroll: false });
+        });
+      }
+    });
   }
 
   [visitors, cpc, check, saleConv, badConv, goodConv].forEach((el) => {

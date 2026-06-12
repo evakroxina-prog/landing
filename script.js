@@ -13,6 +13,14 @@ const GA4_MEASUREMENT_ID = (() => {
 })();
 
 const COOKIE_CONSENT_KEY = 'cookie_consent';
+const CLARITY_PROJECT_ID = (() => {
+  const raw =
+    typeof window !== 'undefined' && window.__CLARITY_PROJECT_ID__
+      ? String(window.__CLARITY_PROJECT_ID__).trim()
+      : '';
+  if (raw && /^[a-z0-9]+$/i.test(raw)) return raw;
+  return 'qqt5aodv7n';
+})();
 
 function isValidGa4Id(id) {
   return typeof id === 'string' && /^G-[A-Z0-9]+$/i.test(id);
@@ -33,12 +41,43 @@ function loadGA4() {
   };
 }
 
+function grantClarityConsent() {
+  if (typeof window.clarity !== 'function') return;
+  try {
+    window.clarity('consentv2', {
+      ad_Storage: 'granted',
+      analytics_Storage: 'granted'
+    });
+  } catch (_) {}
+}
+
+function loadClarity() {
+  if (window.__clarityLoaded) return;
+  window.__clarityLoaded = true;
+  (function (c, l, a, r, i, t, y) {
+    c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+    t = l.createElement(r);
+    t.async = 1;
+    t.src = 'https://www.clarity.ms/tag/' + i;
+    y = l.getElementsByTagName(r)[0];
+    y.parentNode.insertBefore(t, y);
+  })(window, document, 'clarity', 'script', CLARITY_PROJECT_ID);
+  grantClarityConsent();
+}
+
+function loadAnalytics() {
+  loadGA4();
+  loadClarity();
+}
+
 /** Совместимость с другим лендингом marketexpert.cz */
 function loadGA() {
-  loadGA4();
+  loadAnalytics();
 }
 window.loadGA = loadGA;
 window.loadGA4 = loadGA4;
+window.loadClarity = loadClarity;
+window.loadAnalytics = loadAnalytics;
 
 function initCookieBanner() {
   const banner = document.getElementById('cookie-banner');
@@ -50,7 +89,7 @@ function initCookieBanner() {
     stored = null;
   }
   if (stored === 'yes') {
-    loadGA4();
+    loadAnalytics();
     banner.remove();
     return;
   }
@@ -75,7 +114,7 @@ function initCookieBanner() {
       try {
         localStorage.setItem(COOKIE_CONSENT_KEY, 'yes');
       } catch (_) {}
-      loadGA4();
+      loadAnalytics();
       close();
     });
   }

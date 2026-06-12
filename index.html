@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- YouTube embed (ошибка 153): плееру нужен нормальный Referer; same-origin / file:// ломают встраивание -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Создание лендинг-пейдж — M:E Agency · Прага</title>
+  <title>Создание лендинг-пейдж — Market Expert Agency · Прага</title>
   <meta name="description" content="Создаём лендинги под ключ: анализ, текст, дизайн, вёрстка. Пакеты от 200 €. Прага." />
   <script>
     window.__GA4_MEASUREMENT_ID__ = 'G-SPKHXMCQGM';
@@ -49,13 +49,14 @@
   </script>
 
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="form-success.css" />
 </head>
 <body class="font-sans text-ink bg-cream antialiased overflow-x-hidden">
 
   <!-- ============ NAV ============ -->
   <nav class="text-cream fixed top-0 left-0 right-0 z-50" id="mainNav">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 min-h-[56px] sm:min-h-0 sm:h-[68px] h-auto py-2 sm:py-0 flex items-center justify-between gap-2">
-      <a href="https://marketexpert.cz/" class="flex items-center gap-2 sm:gap-3 min-w-0">
+      <a href="#hero" class="flex items-center gap-2 sm:gap-3 min-w-0">
         <img src="logo.png" alt="M:E agency" class="w-9 h-9 sm:w-10 sm:h-10 object-contain drop-shadow-lg shrink-0" width="40" height="40" decoding="async" onerror="this.onerror=null;this.src='logo.svg'" />
         <div class="font-display font-semibold text-[16px] sm:text-[18px] lg:text-[20px] tracking-tight leading-none">M:E <span class="text-gold2 font-normal italic">agency</span></div>
       </a>
@@ -74,7 +75,7 @@
   </nav>
 
   <!-- ============ HERO — PRAGUE BACKGROUND + EDITORIAL CARD ============ -->
-  <section class="hero-editorial relative">
+  <section class="hero-editorial relative" id="hero">
     <!-- Background image -->
     <div class="hero-bg">
       <img src="https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=2400&q=85" alt="Прага, панорама Старого города" loading="eager" />
@@ -1106,6 +1107,9 @@
     </div>
     <div class="site-footer__copy-row">
       <p class="site-footer__copy">© 2026 M:E Agency · Praha · Лендинги</p>
+      <p class="site-footer__crafted">
+        <a href="https://marketexpert.cz/" target="_blank" rel="noopener noreferrer"><span class="site-footer__crafted-label">Created by</span><span class="site-footer__crafted-brand"><span class="site-footer__crafted-me">M:E</span> <em>agency</em></span></a>
+      </p>
     </div>
   </footer>
 
@@ -1123,6 +1127,7 @@
     </svg>
   </a>
 
+  <script src="form-success.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

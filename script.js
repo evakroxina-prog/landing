@@ -554,7 +554,11 @@ async function handleFormSubmit(e) {
     if (res.ok) {
       btn.innerHTML = '<span>✓ Заявка отправлена</span>';
       btn.classList.add('is-submitted');
+      btn.disabled = true;
       form.reset();
+      if (typeof window.showFormSuccess === 'function') {
+        window.showFormSuccess({ lang: 'ru', email: 'landing@marketexpert.cz' });
+      }
       return;
     }
     let msg = 'Не удалось отправить заявку.';

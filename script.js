@@ -26,8 +26,33 @@ function isValidGa4Id(id) {
   return typeof id === 'string' && /^G-[A-Z0-9]+$/i.test(id);
 }
 
-function loadGA4() {
-  if (!isValidGa4Id(GA4_MEASUREMENT_ID) || window.__ga4Loaded) return;
+function hasCookieConsent() {
+  try {
+    return localStorage.getItem(COOKIE_CONSENT_KEY) === 'yes';
+  } catch (_) {
+    return false;
+  }
+}
+
+function grantClarityConsent() {
+  if (typeof window.clarity !== 'function') return;
+  try {
+    window.clarity('consentv2', {
+      ad_Storage: 'granted',
+      analytics_Storage: 'granted'
+    });
+  } catch (_) {}
+}
+
+function revokeClarity() {
+  if (typeof window.clarity !== 'function') return;
+  try {
+    window.clarity('consent', false);
+  } catch (_) {}
+}
+
+function bootGA4() {
+  if (!hasCookieConsent() || !isValidGa4Id(GA4_MEASUREMENT_ID) || window.__ga4Loaded) return;
   window.__ga4Loaded = true;
   window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag() { window.dataLayer.push(arguments); };
@@ -41,33 +66,24 @@ function loadGA4() {
   };
 }
 
-function grantClarityConsent() {
-  if (typeof window.clarity !== 'function') return;
-  try {
-    window.clarity('consentv2', {
-      ad_Storage: 'granted',
-      analytics_Storage: 'granted'
-    });
-  } catch (_) {}
-}
-
-function loadClarity() {
-  if (window.__clarityLoaded) return;
+function bootClarity() {
+  if (!hasCookieConsent() || window.__clarityLoaded) return;
   window.__clarityLoaded = true;
   (function (c, l, a, r, i, t, y) {
     c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
     t = l.createElement(r);
     t.async = 1;
     t.src = 'https://www.clarity.ms/tag/' + i;
+    t.onload = () => { grantClarityConsent(); };
     y = l.getElementsByTagName(r)[0];
     y.parentNode.insertBefore(t, y);
   })(window, document, 'clarity', 'script', CLARITY_PROJECT_ID);
-  grantClarityConsent();
 }
 
 function loadAnalytics() {
-  loadGA4();
-  loadClarity();
+  if (!hasCookieConsent()) return;
+  bootGA4();
+  bootClarity();
 }
 
 /** Совместимость с другим лендингом marketexpert.cz */
@@ -75,8 +91,7 @@ function loadGA() {
   loadAnalytics();
 }
 window.loadGA = loadGA;
-window.loadGA4 = loadGA4;
-window.loadClarity = loadClarity;
+window.loadGA4 = bootGA4;
 window.loadAnalytics = loadAnalytics;
 
 function initCookieBanner() {
@@ -123,6 +138,7 @@ function initCookieBanner() {
       try {
         localStorage.setItem(COOKIE_CONSENT_KEY, 'no');
       } catch (_) {}
+      revokeClarity();
       close();
     });
   }
@@ -632,6 +648,50 @@ function runWhenDomReady(fn) {
     fn();
   }
 }
+(function initReviewsTouchScroll() {
+  const marquee = document.querySelector('.rev-marquee');
+  const track = document.querySelector('.rev-track');
+  if (!marquee || !track) return;
+
+  const mq = window.matchMedia('(max-width: 768px)');
+  let drag = null;
+
+  function applyMode() {
+    if (mq.matches) {
+      track.style.animation = 'none';
+      track.style.transform = 'none';
+    } else {
+      track.style.animation = '';
+      track.style.transform = '';
+      marquee.classList.remove('rev-marquee--dragging');
+    }
+  }
+
+  marquee.addEventListener('pointerdown', (e) => {
+    if (!mq.matches || e.pointerType === 'mouse') return;
+    drag = { x: e.clientX, scroll: marquee.scrollLeft, id: e.pointerId };
+    marquee.classList.add('rev-marquee--dragging');
+    marquee.setPointerCapture(e.pointerId);
+  });
+
+  marquee.addEventListener('pointermove', (e) => {
+    if (!drag || drag.id !== e.pointerId) return;
+    marquee.scrollLeft = drag.scroll - (e.clientX - drag.x);
+  });
+
+  function endDrag(e) {
+    if (!drag || (e && drag.id !== e.pointerId)) return;
+    drag = null;
+    marquee.classList.remove('rev-marquee--dragging');
+    if (e) marquee.releasePointerCapture(e.pointerId);
+  }
+
+  marquee.addEventListener('pointerup', endDrag);
+  marquee.addEventListener('pointercancel', endDrag);
+  mq.addEventListener('change', applyMode);
+  applyMode();
+})();
+
 runWhenDomReady(() => {
   initLeadForm();
   initCookieBanner();

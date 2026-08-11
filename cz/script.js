@@ -571,17 +571,27 @@ document.querySelectorAll('.faq-item').forEach((item) => {
   });
 });
 
+/* ---------- FORM submit (Formspree via meFormAdapter — no auto-retry) ---------- */
 async function handleFormSubmit(e) {
   e.preventDefault();
   const form = e.target;
   if (!(form instanceof HTMLFormElement) || !form.action) return;
+  if (window.meFormAdapter && typeof window.meFormAdapter.submit === 'function') {
+    await window.meFormAdapter.submit(form, {
+      service: 'landing',
+      lang: 'cs',
+      locale: 'cs',
+      email: 'landing@marketexpert.cz',
+      form_id: form.id || 'leadForm',
+    });
+    return;
+  }
   const btn = form.querySelector('.form-submit');
   if (!btn || btn.disabled) return;
-
   const originalHTML = btn.innerHTML;
   btn.disabled = true;
+  btn.setAttribute('aria-busy', 'true');
   btn.innerHTML = '<span>Odesílání…</span>';
-
   try {
     const res = await fetch(form.action, {
       method: 'POST',
@@ -590,12 +600,24 @@ async function handleFormSubmit(e) {
     });
     const data = await res.json().catch(() => ({}));
     if (res.ok) {
+      const emailVal = (form.querySelector('input[name="email"], input[type="email"]') || {}).value || '';
+      const phoneVal = (form.querySelector('input[name="phone"], input[type="tel"]') || {}).value || '';
       btn.innerHTML = '<span>✓ Poptávka odeslána</span>';
       btn.classList.add('is-submitted');
       btn.disabled = true;
+      btn.removeAttribute('aria-busy');
       form.reset();
+      if (typeof window.trackLeadConversion === 'function') {
+        window.trackLeadConversion({
+          service: 'landing',
+          locale: 'cs',
+          form_id: form.id || 'leadForm',
+          email: emailVal,
+          phone: phoneVal
+        });
+      }
       if (typeof window.showFormSuccess === 'function') {
-        window.showFormSuccess({ lang: 'cs', email: 'landing@marketexpert.cz', blog: null });
+        window.showFormSuccess({ lang: 'cs', email: 'landing@marketexpert.cz' });
       }
       return;
     }
@@ -608,10 +630,12 @@ async function handleFormSubmit(e) {
     }
     btn.innerHTML = originalHTML;
     btn.disabled = false;
+    btn.removeAttribute('aria-busy');
     alert(msg);
   } catch {
     btn.innerHTML = originalHTML;
     btn.disabled = false;
+    btn.removeAttribute('aria-busy');
     alert('Chyba sítě. Zkuste později nebo napište přímo na e-mail.');
   }
 }

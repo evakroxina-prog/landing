@@ -19,10 +19,16 @@
   <meta property="og:url" content="https://landing.marketexpert.cz/cz/" />
   <meta property="og:title" content="Tvorba landing page na klíč — M:E Agency · Praha" />
   <meta property="og:description" content="Tvoříme landing page na klíč: analýza, text, design, kód. Balíčky od 200 €. Praha." />
+  <meta property="og:image" content="https://landing.marketexpert.cz/logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tvorba landing page na klíč — M:E Agency · Praha" />
+  <meta name="twitter:description" content="Tvoříme landing page na klíč: analýza, text, design, kód. Balíčky od 200 €. Praha." />
+  <meta name="twitter:image" content="https://landing.marketexpert.cz/logo.png" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"M:E Agency — Landing pages","url":"https://landing.marketexpert.cz/cz/","description":"Tvorba landing page na klíč v Praze. Analýza, copywriting, design, kód.","email":"landing@marketexpert.cz","telephone":"+420705995770","address":{"@type":"PostalAddress","addressLocality":"Praha","addressCountry":"CZ"},"areaServed":{"@type":"Country","name":"Czech Republic"},"priceRange":"€€","inLanguage":"cs"}</script>
 
   <script>
     window.__GA4_MEASUREMENT_ID__ = 'G-SPKHXMCQGM';
+    window.__ME_SERVICE__ = 'landing';
   </script>
   <!-- Иконка вкладки = ваш logo.png из корня репозитория (не вспомогательный svg с буквой M) -->
   <link rel="icon" href="../logo.png" type="image/png" />
@@ -32,38 +38,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['"Fraunces"', 'Georgia', 'serif'],
-            sans:    ['"DM Sans"', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            cream:     '#faf8f4',
-            cream2:    '#f3efe8',
-            cream3:    '#e8e2da',
-            wine:      '#6b1f3a',
-            'wine-dk': '#1e1218',
-            'wine-md': '#85405f',
-            wine2:     '#140c10',
-            gold:      '#d4920a',
-            gold2:     '#f5a623',
-            goldDim:   '#b0780d',
-            ink:       '#1c1410',
-            muted:     '#6b5d54',
-            success:   '#1f8a50',
-            danger:    '#b4342c',
-          },
-        },
-      },
-    };
-  </script>
-
+  <!-- Production CSS: built via _tailwind_tooling (pinned Tailwind 3.4.17). Do not use Play CDN. -->
+  <link rel="stylesheet" href="../tailwind.built.css" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../form-success.css" />
+  <link rel="stylesheet" href="../cookie.css" />
 </head>
 <body class="font-sans text-ink bg-cream antialiased overflow-x-hidden">
 
@@ -167,7 +146,7 @@
           <!-- Trust strip inside card -->
           <div class="hero-trust">
             <div class="trust-langs">
-              <span>🇨🇿</span><span>🇺🇦</span><span>🇬🇧</span><span>🇷🇺</span>
+              <span>🇨🇿</span><span>🇺🇦</span><span>EN</span><span>🇷🇺</span>
               <span class="trust-note">mluvíme a píšeme ve 4 jazycích</span>
             </div>
             <div class="trust-divider"></div>
@@ -303,28 +282,28 @@
         <div class="text-[10px] font-bold uppercase tracking-[0.22em] text-muted mb-4">Vaše aktuální data</div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
           <div class="calc-input-wrap">
-            <label>Traffic</label>
+            <label for="cVisitors">Traffic</label>
             <div class="calc-input">
               <input type="number" id="cVisitors" value="1000" min="0" step="100" title="Návštěvníků za měsíc">
               <span class="calc-unit">os./měs.</span>
             </div>
           </div>
           <div class="calc-input-wrap">
-            <label>Náklady na traffic (CPC)</label>
+            <label for="cCpc">Náklady na traffic (CPC)</label>
             <div class="calc-input">
               <input type="number" id="cCpc" value="25" min="0" step="1" title="Cena za klik / přechod">
               <span class="calc-unit">Kč</span>
             </div>
           </div>
           <div class="calc-input-wrap">
-            <label>Průměrná objednávka</label>
+            <label for="cCheck">Průměrná objednávka</label>
             <div class="calc-input">
               <input type="number" id="cCheck" value="12500" min="0" step="500">
               <span class="calc-unit">Kč</span>
             </div>
           </div>
           <div class="calc-input-wrap">
-            <label>Konverze v prodej</label>
+            <label for="cSaleConv">Konverze v prodej</label>
             <div class="calc-input">
               <input type="number" id="cSaleConv" value="30" min="0" max="100" step="1" title="% poptávek, které dojdou k nákupu">
               <span class="calc-unit">% poptávek</span>
@@ -344,7 +323,7 @@
           </div>
           <div class="calc-body">
             <div class="calc-row">
-              <span class="calc-label">Konverze landingu v poptávku</span>
+              <label class="calc-label" for="cBadConv">Konverze landingu v poptávku</label>
               <div class="calc-input calc-input-inline">
                 <input type="number" id="cBadConv" value="2" min="0" max="100" step="0.1">
                 <span class="calc-unit">%</span>
@@ -399,7 +378,7 @@
           </div>
           <div class="calc-body">
             <div class="calc-row">
-              <span class="calc-label">Konverze landingu v poptávku</span>
+              <label class="calc-label" for="cGoodConv">Konverze landingu v poptávku</label>
               <div class="calc-input calc-input-inline">
                 <input type="number" id="cGoodConv" value="12" min="0" max="100" step="0.1">
                 <span class="calc-unit">%</span>
@@ -849,8 +828,8 @@
         <article class="review-card">
           <div class="review-quote-mark">“</div>
           <div class="review-stars">★★★★★</div>
-          <div class="review-result">+567 % <span>poptávek</span></div>
-          <p class="review-text">„Před aktualizací jsme měli jen 3–5 poptávek měsíčně. Po změně struktury a nadpisů — <strong>34 poptávek</strong> za stejné období. Rozpočet na traffic jsme neměnili.“</p>
+          <div class="review-result">Růst poptávek</div>
+          <p class="review-text">„Před aktualizací jsme měli jen 3–5 poptávek měsíčně. Po změně struktury a nadpisů — <strong>výrazně více poptávek za stejné období</strong>. Rozpočet na traffic jsme neměnili.“</p>
           <div class="review-meta">
             <img class="review-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=160&h=160&q=80" alt="Oleg K." loading="lazy">
             <div>
@@ -863,8 +842,8 @@
         <article class="review-card">
           <div class="review-quote-mark">“</div>
           <div class="review-stars">★★★★★</div>
-          <div class="review-result">×5,6 <span>konverze</span></div>
-          <p class="review-text">„Konečně design ne kvůli designu. Vysvětlili každé rozhodnutí: proč tlačítko tady a nadpis takový. Výsledek — <strong>nárůst konverze 5,6×</strong>. To je profesionální přístup.“</p>
+          <div class="review-result">Růst konverze</div>
+          <p class="review-text">„Konečně design ne kvůli designu. Vysvětlili každé rozhodnutí: proč tlačítko tady a nadpis takový. Výsledek — <strong>výrazný růst konverze</strong>. To je profesionální přístup.“</p>
           <div class="review-meta">
             <img class="review-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=160&h=160&q=80" alt="Marie G." loading="lazy">
             <div>
@@ -877,8 +856,8 @@
         <article class="review-card">
           <div class="review-quote-mark">“</div>
           <div class="review-stars">★★★★★</div>
-          <div class="review-result">8 klientů <span>za 2 týdny</span></div>
-          <p class="review-text">„Spouštěli jsme náročný segment — právní služby. Dřív kanál vůbec nevynášel. Po novém landingu jsme za první dva týdny <strong>uzavřeli 8 smluv</strong>. Systém začal fungovat.“</p>
+          <div class="review-result">Noví klienti</div>
+          <p class="review-text">„Spouštěli jsme náročný segment — právní služby. Dřív kanál vůbec nevynášel. Po novém landingu jsme za první dva týdny <strong>získali nové smlouvy</strong>. Systém začal fungovat.“</p>
           <div class="review-meta">
             <img class="review-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&h=160&q=80" alt="Dmitrij L." loading="lazy">
             <div>
@@ -891,8 +870,8 @@
         <article class="review-card">
           <div class="review-quote-mark">“</div>
           <div class="review-stars">★★★★★</div>
-          <div class="review-result">−38 % <span>cena leadu</span></div>
-          <p class="review-text">„Restart landingu <strong>se zaplatil za 11 dní</strong>. Cena poptávky klesla skoro na polovinu a kvalita leadů vzrostla — méně těch, co „jen chtěli zeptat“. Teď chodí cílení klienti.“</p>
+          <div class="review-result">Nižší cena leadu</div>
+          <p class="review-text">„Restart landingu <strong>rychle vrátil investici</strong>. Cena poptávky klesla a kvalita leadů vzrostla — méně těch, co „jen chtěli zeptat“. Teď chodí cílení klienti.“</p>
           <div class="review-meta">
             <img class="review-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=160&h=160&q=80" alt="Jaroslav P." loading="lazy">
             <div>
@@ -905,8 +884,8 @@
         <article class="review-card">
           <div class="review-quote-mark">“</div>
           <div class="review-stars">★★★★★</div>
-          <div class="review-result">+4 200 € <span>měsíčně</span></div>
-          <p class="review-text">„Myslela jsem, že problém je v produktu, ale byl v nabídce. Přepsali nadpis, přestavěli první obrazovku a tržby další měsíc <strong>vzrostly o 4 200 € při stejném reklamním rozpočtu</strong>. Předčilo to očekávání.“</p>
+          <div class="review-result">Růst tržeb</div>
+          <p class="review-text">„Myslela jsem, že problém je v produktu, ale byl v nabídce. Přepsali nadpis, přestavěli první obrazovku a tržby další měsíc <strong>vzrostly při stejném reklamním rozpočtu</strong>. Předčilo to očekávání.“</p>
           <div class="review-meta">
             <img class="review-avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=160&h=160&q=80" alt="Natálie V." loading="lazy">
             <div>
@@ -919,7 +898,7 @@
         <article class="review-card">
           <div class="review-quote-mark">“</div>
           <div class="review-stars">★★★★★</div>
-          <div class="review-result">×3,2 <span>CTR reklamy</span></div>
+          <div class="review-result">Silnější CTR</div>
           <p class="review-text">Dobrý landing táhne i reklamu. Méně odmítnutí — vyšší kvalita reklamy v Google, nižší cena kliku. Efekt 2 v 1.</p>
           <div class="review-meta">
             <img class="review-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=160&h=160&q=80" alt="Igor S." loading="lazy">
@@ -934,8 +913,8 @@
         <article class="review-card review-card--loop">
           <div class="review-quote-mark">“</div>
           <div class="review-stars">★★★★★</div>
-          <div class="review-result">+567 % <span>poptávek</span></div>
-          <p class="review-text">„Před aktualizací jsme měli jen 3–5 poptávek měsíčně. Po změně struktury a nadpisů — <strong>34 poptávek</strong> za stejné období. Rozpočet na traffic jsme neměnili.“</p>
+          <div class="review-result">Růst poptávek</div>
+          <p class="review-text">„Před aktualizací jsme měli jen 3–5 poptávek měsíčně. Po změně struktury a nadpisů — <strong>výrazně více poptávek za stejné období</strong>. Rozpočet na traffic jsme neměnili.“</p>
           <div class="review-meta">
             <img class="review-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=160&h=160&q=80" alt="Oleg K." loading="lazy">
             <div>
@@ -947,8 +926,8 @@
         <article class="review-card review-card--loop">
           <div class="review-quote-mark">“</div>
           <div class="review-stars">★★★★★</div>
-          <div class="review-result">×5,6 <span>konverze</span></div>
-          <p class="review-text">„Konečně design ne kvůli designu. Vysvětlili každé rozhodnutí: proč tlačítko tady a nadpis takový. Výsledek — <strong>nárůst konverze 5,6×</strong>. To je profesionální přístup.“</p>
+          <div class="review-result">Růst konverze</div>
+          <p class="review-text">„Konečně design ne kvůli designu. Vysvětlili každé rozhodnutí: proč tlačítko tady a nadpis takový. Výsledek — <strong>výrazný růst konverze</strong>. To je profesionální přístup.“</p>
           <div class="review-meta">
             <img class="review-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=160&h=160&q=80" alt="Marie G." loading="lazy">
             <div>
@@ -960,8 +939,8 @@
         <article class="review-card review-card--loop">
           <div class="review-quote-mark">“</div>
           <div class="review-stars">★★★★★</div>
-          <div class="review-result">8 klientů <span>za 2 týdny</span></div>
-          <p class="review-text">„Spouštěli jsme náročný segment — právní služby. Dřív kanál vůbec nevynášel. Po novém landingu jsme za první dva týdny <strong>uzavřeli 8 smluv</strong>. Systém začal fungovat.“</p>
+          <div class="review-result">Noví klienti</div>
+          <p class="review-text">„Spouštěli jsme náročný segment — právní služby. Dřív kanál vůbec nevynášel. Po novém landingu jsme za první dva týdny <strong>získali nové smlouvy</strong>. Systém začal fungovat.“</p>
           <div class="review-meta">
             <img class="review-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&h=160&q=80" alt="Dmitrij L." loading="lazy">
             <div>
@@ -1060,15 +1039,15 @@
         <p class="mt-6 text-[15px] text-cream/60 leading-relaxed max-w-lg break-words">Popište svůj produkt — prostudujeme úkol, navrhneme strukturu a řekneme přesnou cenu.</p>
 
         <div class="mt-10 space-y-4 text-[13px] text-cream/70">
-          <div class="flex items-start gap-3 min-w-0">
+          <div class="flex items-center gap-3 min-w-0">
             <span class="w-9 h-9 shrink-0 rounded-full border border-gold/40 flex items-center justify-center text-gold">✓</span>
             <span class="min-w-0 flex-1 leading-snug">Odpovíme do dne</span>
           </div>
-          <div class="flex items-start gap-3 min-w-0">
+          <div class="flex items-center gap-3 min-w-0">
             <span class="w-9 h-9 shrink-0 rounded-full border border-gold/40 flex items-center justify-center text-gold">✓</span>
             <span class="min-w-0 flex-1 leading-snug font-semibold text-cream/85"><a href="https://consult.marketexpert.cz/cs/" target="_blank" rel="noopener noreferrer" class="text-cream/85 hover:text-gold2 underline decoration-gold2/40 underline-offset-2">Bezplatná konzultace k úkolu (30 min)</a></span>
           </div>
-          <div class="flex items-start gap-3 min-w-0">
+          <div class="flex items-center gap-3 min-w-0">
             <span class="w-9 h-9 shrink-0 rounded-full border border-gold/40 flex items-center justify-center text-gold">✓</span>
             <span class="min-w-0 flex-1 leading-snug">Komunikujeme věcně, bez spamu a dlouhých callů</span>
           </div>
@@ -1086,20 +1065,20 @@
         </div>
         <div class="form-grid">
           <div class="field">
-            <label>Vaše jméno</label>
-            <input type="text" name="name" placeholder="Jak vás oslovovat?" required autocomplete="name">
+            <label for="leadName">Vaše jméno</label>
+            <input type="text" id="leadName" name="name" placeholder="Jak vás oslovovat?" required autocomplete="name">
           </div>
           <div class="field">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="you@company.com" required autocomplete="email">
+            <label for="leadEmail">Email</label>
+            <input type="email" id="leadEmail" name="email" placeholder="you@company.com" required autocomplete="email">
           </div>
           <div class="field field-full">
-            <label>Telefon <span class="text-cream/40 font-normal">(nepovinné)</span></label>
-            <input type="tel" name="phone" placeholder="+420 …" autocomplete="tel">
+            <label for="leadPhone">Telefon <span class="text-cream/40 font-normal">(nepovinné)</span></label>
+            <input type="tel" id="leadPhone" name="phone" placeholder="+420 …" autocomplete="tel">
           </div>
           <div class="field field-full">
-            <label>Orientační rozpočet nebo balíček</label>
-            <div class="pkg-picker">
+            <label id="leadBudgetLabel">Orientační rozpočet nebo balíček</label>
+            <div class="pkg-picker" role="group" aria-labelledby="leadBudgetLabel">
               <label class="pkg-opt"><input type="radio" name="pkg-order" value="maybe" checked><span>Ještě nevím</span></label>
               <label class="pkg-opt"><input type="radio" name="pkg-order" value="basic"><span>Základní · 200 €</span></label>
               <label class="pkg-opt"><input type="radio" name="pkg-order" value="growth"><span>Růst · 750 €</span></label>
@@ -1107,8 +1086,8 @@
             </div>
           </div>
           <div class="field field-full">
-            <label>O produktu a úkolu</label>
-            <textarea name="message" rows="3" placeholder="Co prodáváte? Máte už landing? Odkud jde traffic?"></textarea>
+            <label for="leadMessage">O produktu a úkolu</label>
+            <textarea id="leadMessage" name="message" rows="3" placeholder="Co prodáváte? Máte už landing? Odkud jde traffic?"></textarea>
           </div>
           <button type="submit" class="form-submit">
             <span>Probrat projekt</span>
@@ -1137,7 +1116,7 @@
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <a href="https://marketexpert.cz/" class="site-footer__brand shrink-0">
+      <a href="/" class="site-footer__brand shrink-0">
         <img src="../logo.png" alt="M:E agency" width="44" height="44" decoding="async" onerror="this.onerror=null;this.src='../logo.svg'" />
         <span class="site-footer__brand-text">M:E <em>agency</em></span>
       </a>
@@ -1177,6 +1156,8 @@
     </svg>
   </a>
 
+  <script src="../me-analytics.js"></script>
+  <script src="../me-form-adapter.js"></script>
   <script src="../form-success.js"></script>
   <script src="script.js"></script>
 

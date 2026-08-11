@@ -587,18 +587,27 @@ document.querySelectorAll('.faq-item').forEach((item) => {
   });
 });
 
-/* ---------- FORM submit (Formspree) ---------- */
+/* ---------- FORM submit (Formspree via meFormAdapter — no auto-retry) ---------- */
 async function handleFormSubmit(e) {
   e.preventDefault();
   const form = e.target;
   if (!(form instanceof HTMLFormElement) || !form.action) return;
+  if (window.meFormAdapter && typeof window.meFormAdapter.submit === 'function') {
+    await window.meFormAdapter.submit(form, {
+      service: 'landing',
+      lang: 'ru',
+      locale: 'ru',
+      email: 'landing@marketexpert.cz',
+      form_id: form.id || 'leadForm',
+    });
+    return;
+  }
   const btn = form.querySelector('.form-submit');
   if (!btn || btn.disabled) return;
-
   const originalHTML = btn.innerHTML;
   btn.disabled = true;
+  btn.setAttribute('aria-busy', 'true');
   btn.innerHTML = '<span>Отправка…</span>';
-
   try {
     const res = await fetch(form.action, {
       method: 'POST',
@@ -607,10 +616,22 @@ async function handleFormSubmit(e) {
     });
     const data = await res.json().catch(() => ({}));
     if (res.ok) {
+      const emailVal = (form.querySelector('input[name="email"], input[type="email"]') || {}).value || '';
+      const phoneVal = (form.querySelector('input[name="phone"], input[type="tel"]') || {}).value || '';
       btn.innerHTML = '<span>✓ Заявка отправлена</span>';
       btn.classList.add('is-submitted');
       btn.disabled = true;
+      btn.removeAttribute('aria-busy');
       form.reset();
+      if (typeof window.trackLeadConversion === 'function') {
+        window.trackLeadConversion({
+          service: 'landing',
+          locale: 'ru',
+          form_id: form.id || 'leadForm',
+          email: emailVal,
+          phone: phoneVal
+        });
+      }
       if (typeof window.showFormSuccess === 'function') {
         window.showFormSuccess({ lang: 'ru', email: 'landing@marketexpert.cz' });
       }
@@ -625,10 +646,12 @@ async function handleFormSubmit(e) {
     }
     btn.innerHTML = originalHTML;
     btn.disabled = false;
+    btn.removeAttribute('aria-busy');
     alert(msg);
   } catch {
     btn.innerHTML = originalHTML;
     btn.disabled = false;
+    btn.removeAttribute('aria-busy');
     alert('Ошибка сети. Попробуйте позже или напишите напрямую на email.');
   }
 }
